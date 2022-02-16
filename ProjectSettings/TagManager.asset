@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - FatBirdFall
+  - Bullet
   layers:
   - Default
   - TransparentFX
