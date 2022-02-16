@@ -25,6 +25,7 @@ public class SpaceCraft : MonoBehaviour
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
         colliderHalfWidth = collider.size.x / 2;
         colliderHalfHeight = collider.size.y / 2;
+        transform.position = new Vector3();
     }
 
     // Update is called once per frame
@@ -57,8 +58,9 @@ public class SpaceCraft : MonoBehaviour
     // Shooting function
     void Shoot()
     {
-        GameObject spaceCraft = GameObject.FindGameObjectWithTag("Player");
-        GameObject bulletShooted = Instantiate<GameObject>(bullet, spaceCraft.transform.position, Quaternion.identity);
+        GameObject bulletShooted = Instantiate<GameObject>(bullet,transform.position, Quaternion.identity);
+        Bullet script = bullet.GetComponent<Bullet>();
+        script.ApplyForce(new Vector2(1, 0));
         //AudioSource source = GetComponent<AudioSource>();
         //source.PlayOneShot(audioClip);
     }
@@ -90,7 +92,7 @@ public class SpaceCraft : MonoBehaviour
     // Subtract HP when touch creep
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.tag == "Creep")
+        if (collision.collider.gameObject.tag == "FatBirdFall")
         {
             healthPoint--;
         }
@@ -99,7 +101,7 @@ public class SpaceCraft : MonoBehaviour
     // game over
     void GameOver()
     {
-        Debug.Log("game over");
+        print("game over");
         SceneManager.LoadScene("GameOver");
     }
 }

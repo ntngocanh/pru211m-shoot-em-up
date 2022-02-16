@@ -9,9 +9,11 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Rigidbody2D>().AddForce(transform.up*10, ForceMode2D.Impulse);
+        GameObject spacecraft = GameObject.FindGameObjectWithTag("Player");
+        GetComponent<Rigidbody2D>().AddForce(spacecraft.transform.up*10, ForceMode2D.Impulse);
     }
 
+    
     // Update is called once per frame
     void Update()
     {
@@ -20,10 +22,17 @@ public class Bullet : MonoBehaviour
     // Destroy if collide with creep
     void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject gameObject = GameObject.FindGameObjectWithTag("Bullet");
+        //GameObject gameObject = GameObject.FindGameObjectWithTag("Bullet");
         if(collision.gameObject.tag == "FatBirdFall")
         {
             Destroy(gameObject);
         }
+    }
+    public void ApplyForce(Vector2 forceDirection){
+        const float forceMagnitude = 10;
+        GetComponent<Rigidbody2D>().AddForce(
+            forceMagnitude*forceDirection,
+            ForceMode2D.Impulse
+        );
     }
 }
