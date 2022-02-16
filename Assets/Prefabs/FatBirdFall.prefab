@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 365565557533612813}
   - component: {fileID: 44974222361389544}
   - component: {fileID: 3192050212210513586}
+  - component: {fileID: 5196483966273215716}
   m_Layer: 0
   m_Name: FatBirdFall
   m_TagString: FatBirdFall
@@ -129,3 +130,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4126947, y: 0.44338387}
   m_EdgeRadius: 0
+--- !u!114 &5196483966273215716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8240481103918117198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2f17f0a0bbb814a9d5bdf1a9143a64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
