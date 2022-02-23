@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3802493976355469023}
   - component: {fileID: 3802493976355469016}
   - component: {fileID: 3802493976355469017}
-  - component: {fileID: 3802493976355469012}
   m_Layer: 0
   m_Name: Player_0
   m_TagString: Player
@@ -99,22 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5326195693295967522, guid: 6d1a267856bcb8b4d9974e90948ff8a3, type: 3}
 --- !u!58 &3802493976355469017
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3802493976355469021}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.12
---- !u!58 &3802493976355469012
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
