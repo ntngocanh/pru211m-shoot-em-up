@@ -26,7 +26,11 @@ public class Creep : MonoBehaviour
         if (coll.gameObject.CompareTag("Bullet"))
         {
             health--;
-            if(health <= 0) Destroy(gameObject);
+            if (health <= 0) Destroy(gameObject);
+            DropItem();
         }
+    }
+    public virtual void DropItem()
+    {
     }
 }
