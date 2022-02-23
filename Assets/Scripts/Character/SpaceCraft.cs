@@ -16,15 +16,18 @@ public class SpaceCraft : MonoBehaviour
     // health of character
     int healthPoint = 5;
 
+    // Fire support
+    public double canfire = 0.2;
+
     // movement support
     const float MoveUnitsPerSecond = 10;
 
     // Start is called before the first frame update
     void Start()
     {
-        BoxCollider2D collider = GetComponent<BoxCollider2D>();
-        colliderHalfWidth = collider.size.x / 2;
-        colliderHalfHeight = collider.size.y / 2;
+        //BoxCollider2D collider = GetComponent<BoxCollider2D>();
+        //colliderHalfWidth = collider.size.x / 2;
+        //colliderHalfHeight = collider.size.y / 2;
         transform.position = new Vector3();
     }
 
@@ -49,9 +52,10 @@ public class SpaceCraft : MonoBehaviour
         ClampInScreen();
 
         // shoot if click left mouse button
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButton("Fire1") && (Time.time > canfire))
         {
-            Shoot();
+            Shoot(); 
+            canfire = Time.time + 0.2;
         }
     }
 
