@@ -17,8 +17,9 @@ public class SpaceCraft : MonoBehaviour
     int healthPoint = 5;
 
     // Fire support
-    public double canfire = 0.2;
-
+    double canfire = 0.2;
+    int levelGun = 3;
+    float spread = 60.0f;
     // movement support
     const float MoveUnitsPerSecond = 10;
 
@@ -62,9 +63,21 @@ public class SpaceCraft : MonoBehaviour
     // Shooting function
     void Shoot()
     {
-        GameObject bulletShooted = Instantiate<GameObject>(bullet,transform.position, Quaternion.identity);
-        Bullet script = bullet.GetComponent<Bullet>();
-        script.ApplyForce(new Vector2(1, 0));
+        float spreadRange = spread / 2f;
+        Debug.Log(spreadRange);
+        Debug.Log(spread);
+        Debug.Log("-------------------------");
+        for (int i = 0; i <= levelGun; i++)
+        {
+            float startRotation = Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg + spreadRange;
+            float rotation = startRotation - spread * i / ((float) levelGun - 1f);
+            Debug.Log(rotation);
+            GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.Euler(0f, 0f, rotation));
+            Bullet script = bullet.GetComponent<Bullet>();
+            script.Setup(new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation) * Mathf.Deg2Rad));
+            //script.ApplyForce(new Vector2(1, 0));
+        }
+        
         //AudioSource source = GetComponent<AudioSource>();
         //source.PlayOneShot(audioClip);
     }

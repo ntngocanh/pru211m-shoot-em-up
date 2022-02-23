@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabExplosion: {fileID: 0}
+  rigidbody: {fileID: 1565120945280527052}
+  speed: 0
 --- !u!58 &4661391858253498918
 CircleCollider2D:
   m_ObjectHideFlags: 0

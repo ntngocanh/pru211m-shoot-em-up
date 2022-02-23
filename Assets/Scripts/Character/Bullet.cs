@@ -8,6 +8,11 @@ public class Bullet : MonoBehaviour
     protected Timer deathTimer;
     protected float lifeSeconds;
 
+    [SerializeField]
+    private Rigidbody2D rigidbody;
+    [SerializeField]
+    private float speed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +24,16 @@ public class Bullet : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(spacecraft.transform.up*10, ForceMode2D.Impulse);
     }
 
+    public void Setup(Vector2 moveDirection)
+    {
+        rigidbody.velocity = moveDirection.normalized * speed;
+    }
     
     // Update is called once per frame
     void Update()
     {
+        //this.transform.position = this.direction * this.speed * Time.deltaTime;
+
         // kill bullet when timer is done
         if (deathTimer.Finished)
         {
