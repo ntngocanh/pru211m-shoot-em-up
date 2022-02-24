@@ -30,7 +30,17 @@ public class Creep : MonoBehaviour
             DropItem();
         }
     }
+<<<<<<< HEAD
     public virtual void DropItem()
     {
+=======
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.CompareTag("Bullet"))
+        {
+            health--;
+            if (health <= 0) Destroy(gameObject);
+        }
+>>>>>>> features/spacecraft/luongtd5
     }
 }

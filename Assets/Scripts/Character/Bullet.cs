@@ -46,6 +46,14 @@ public class Bullet : MonoBehaviour
         }
     }
     // Destroy if collide with creep
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "FatBirdFall")
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         //GameObject gameObject = GameObject.FindGameObjectWithTag("Bullet");
