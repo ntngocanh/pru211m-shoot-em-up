@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabExplosion: {fileID: 0}
-  rigidbody: {fileID: 1565120945280527052}
-  speed: 0
+  myRigidbody: {fileID: 1565120945280527052}
+  speed: 15
 --- !u!58 &4661391858253498918
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 5f9f808bb013dff4692a613dde467bd0, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

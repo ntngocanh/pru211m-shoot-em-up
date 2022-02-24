@@ -19,8 +19,6 @@ public class SpaceCraft : MonoBehaviour
 
     // Fire support
     double canfire = 0.2;
-    int levelGun = 3;
-    float spread = 60.0f;
     // movement support
     const float MoveUnitsPerSecond = 10;
 
@@ -54,29 +52,28 @@ public class SpaceCraft : MonoBehaviour
         transform.position = position;
         ClampInScreen();
 
-        // shoot if click left mouse button
+        // shoot given bullets in given spread if click left mouse button
         if (Input.GetButton("Fire1") && (Time.time > canfire))
         {
-            Shoot(); 
-            canfire = Time.time + 0.2;
+            Shoot(5, 90); 
+            canfire = Time.time + 0.5;
         }
     }
 
     // Shooting function
-    void Shoot()
+    void Shoot(int numberOfBullet, float spread)
     {
+        Debug.Log("Start rotation at: " + Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg);
         float spreadRange = spread / 2f;
-        Debug.Log(spreadRange);
-        Debug.Log(spread);
-        Debug.Log("-------------------------");
-        for (int i = 0; i <= levelGun; i++)
+        for (int i = 0; i < numberOfBullet; i++)
         {
             float startRotation = Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg + spreadRange;
-            float rotation = startRotation - spread * i / ((float) levelGun - 1f);
-            Debug.Log(rotation);
+            float rotation = startRotation - (spread / ((float) numberOfBullet - 1f)) * i;
+            Debug.Log("This is the rotation of" + i + ":" + rotation);
             GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.Euler(0f, 0f, rotation));
-            Bullet script = bullet.GetComponent<Bullet>();
-            script.Setup(new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation) * Mathf.Deg2Rad));
+            Bullet script = bulletShooted.GetComponent<Bullet>();
+            Debug.Log("This is direction of " + i + ":" + new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
+            script.Setup(new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
             //script.ApplyForce(new Vector2(1, 0));
         }
         

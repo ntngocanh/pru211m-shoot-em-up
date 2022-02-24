@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     protected float lifeSeconds;
 
     [SerializeField]
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D myRigidbody;
     [SerializeField]
     private float speed;
 
@@ -21,12 +21,17 @@ public class Bullet : MonoBehaviour
         deathTimer.Duration = lifeSeconds;
         deathTimer.Run();
         GameObject spacecraft = GameObject.FindGameObjectWithTag("Player");
-        GetComponent<Rigidbody2D>().AddForce(spacecraft.transform.up*10, ForceMode2D.Impulse);
+        //GetComponent<Rigidbody2D>().AddForce(spacecraft.transform.up*10, ForceMode2D.Impulse);
+        myRigidbody = GetComponent<Rigidbody2D>() as Rigidbody2D;
     }
 
     public void Setup(Vector2 moveDirection)
     {
-        rigidbody.velocity = moveDirection.normalized * speed;
+        //Debug.Log("Velocity: " + myRigidbody.velocity);
+        myRigidbody.velocity = moveDirection.normalized * 10f;
+        //Debug.Log("rigidbody position" + myRigidbody.transform.position);
+        //Debug.Log("Move Direction.normalized " + moveDirection.normalized + " and speed is: " + 87f);
+        //Debug.Log("Velocity: " + moveDirection.normalized * 87f);
     }
     
     // Update is called once per frame
