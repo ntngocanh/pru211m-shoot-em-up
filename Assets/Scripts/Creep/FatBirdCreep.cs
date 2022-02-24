@@ -50,4 +50,13 @@ public class FatBirdCreep : Creep
             GameObject foodClone = Instantiate(food, transform.position, Quaternion.identity) as GameObject;
         }
     }
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.CompareTag("Bullet"))
+        {
+            health--;
+            if (health <= 0) Destroy(gameObject);
+            DropItem();
+        }
+    }
 }

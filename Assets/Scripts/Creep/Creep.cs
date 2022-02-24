@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Creep : MonoBehaviour
 {
-    int health;
+    protected int health;
     protected int Health{
         set{
             health = value;
@@ -30,10 +30,8 @@ public class Creep : MonoBehaviour
             DropItem();
         }
     }
-<<<<<<< HEAD
     public virtual void DropItem()
-    {
-=======
+    {}
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Bullet"))
@@ -41,6 +39,5 @@ public class Creep : MonoBehaviour
             health--;
             if (health <= 0) Destroy(gameObject);
         }
->>>>>>> features/spacecraft/luongtd5
     }
 }
