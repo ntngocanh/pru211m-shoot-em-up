@@ -144,3 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   egg: {fileID: 3937940509772781221, guid: 91f3f8fd237e2ea4fa367692f6814620, type: 3}
   food: {fileID: 3262186605760382063, guid: 5c8595f5b542d754e9d9092231e99218, type: 3}
+  gift1: {fileID: 5060486849327872312, guid: c3e4ccaef1afe724090c3952f95d13b6, type: 3}
+  gift2: {fileID: 8478956031497446077, guid: f20b29b89fbf69743a750e6b58da5937, type: 3}
+  gift3: {fileID: 219686198853631345, guid: ef38445e75dcd114782315f9048b3398, type: 3}
+  diePrefab: {fileID: 3513418924536030976, guid: f2d1ab95ded5f1047aa79e37d7c86f94, type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Creep : MonoBehaviour
 {
-    int health;
+    protected int health;
     protected int Health{
         set{
             health = value;
@@ -21,13 +21,16 @@ public class Creep : MonoBehaviour
     {
         
     }
-    void OnCollisionEnter2D(Collision2D coll)
+    public virtual void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.CompareTag("Bullet"))
         {
             health--;
-            if (health <= 0) Destroy(gameObject);
-            DropItem();
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+                DropItem();
+            }
         }
     }
     public virtual void DropItem()

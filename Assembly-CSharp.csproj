@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Util\ScreenUtils.cs" />
+    <Compile Include="Assets\Scripts\Creep\Food.cs" />
     <Compile Include="Assets\Scripts\Util\Timer.cs" />
     <Compile Include="Assets\Scripts\Character\Bullet.cs" />
     <Compile Include="Assets\Scripts\Creep\Creep.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="Assets\Scripts\Creep\CreepSpawner1.cs" />
     <Compile Include="Assets\Scripts\Character\SpaceCraft.cs" />
     <Compile Include="Assets\Scripts\Creep\Egg.cs" />
-    <Compile Include="Assets\Scripts\Creep\Food.cs" />
+    <Compile Include="Assets\Scripts\Creep\Gift.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
