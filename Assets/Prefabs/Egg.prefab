@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3937940509772781224}
   - component: {fileID: 3937940509772781223}
   - component: {fileID: 3937940509772781222}
-  - component: {fileID: 1344890353}
   - component: {fileID: -7125085697436415593}
+  - component: {fileID: 558805223950047610}
   m_Layer: 8
   m_Name: Egg
   m_TagString: Egg
@@ -106,22 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!58 &1344890353
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3937940509772781221}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.3
 --- !u!114 &-7125085697436415593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +118,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c812f7463aeda794aa36501bcfb0d4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eggYolk: {fileID: 861455262265062383, guid: 9c5b9b836d5d9304d95a4a6007365431, type: 3}
+--- !u!70 &558805223950047610
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3937940509772781221}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.68, y: 0.86}
+  m_Direction: 0
