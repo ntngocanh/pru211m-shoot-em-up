@@ -16,13 +16,10 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lifeSeconds = 5;
-        deathTimer = gameObject.AddComponent<Timer>();
-        deathTimer.Duration = lifeSeconds;
-        deathTimer.Run();
-        GameObject spacecraft = GameObject.FindGameObjectWithTag("Player");
+        //GameObject spacecraft = GameObject.FindGameObjectWithTag("Player");
         //GetComponent<Rigidbody2D>().AddForce(spacecraft.transform.up*10, ForceMode2D.Impulse);
         myRigidbody = GetComponent<Rigidbody2D>() as Rigidbody2D;
+
     }
 
     public void Setup(Vector2 moveDirection)
@@ -35,21 +32,18 @@ public class Bullet : MonoBehaviour
     }
     
     // Update is called once per frame
-    void Update()
+    void OnBecameInvisible()
     {
-        //this.transform.position = this.direction * this.speed * Time.deltaTime;
-
-        // kill bullet when timer is done
-        if (deathTimer.Finished)
-        {
-            Destroy(gameObject);
-        }
-    }
+		Destroy(gameObject);
+	}
     // Destroy if collide with creep
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "FatBirdFall")
         {
+            GameManager.Instance.AddPoints(5);
+            //GameHUD hud = GameHUD.instance;
+            //print("from bullet: "+ hud.Score);
             Destroy(gameObject);
         }
     }

@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class SpaceCraft : MonoBehaviour
 {
     [SerializeField]
+    GameObject prefabExplosion;
+    [SerializeField]
     string levelName;
     [SerializeField]
-    public GameObject bullet;
+    GameObject bullet;
     private Rigidbody2D myRigidBody;
     // saved for efficiency
     float colliderHalfWidth;
@@ -21,6 +23,29 @@ public class SpaceCraft : MonoBehaviour
     double canfire = 0.2;
     // movement support
     const float MoveUnitsPerSecond = 10;
+    public static SpaceCraft instance = null;  
+    public static int score = 0;
+ 
+         //Awake is always called before any Start functions
+    void Awake()
+    {
+        //Check if instance already exists
+        if (instance == null)
+        {
+            //if not, set instance to this
+            instance = this;
+        }
+        //If instance already exists and it's not this:
+        else if (instance != this)
+        {
+        Destroy(gameObject);   
+        }
+
+        
+        //Sets this to not be destroyed when reloading scene
+        DontDestroyOnLoad(gameObject);
+        
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +53,15 @@ public class SpaceCraft : MonoBehaviour
         //BoxCollider2D collider = GetComponent<BoxCollider2D>();
         //colliderHalfWidth = collider.size.x / 2;
         //colliderHalfHeight = collider.size.y / 2;
-        transform.position = new Vector3();
+        //transform.position = new Vector3();
+        print(healthPoint);
+		
     }
-
+    public static void HandlePointsAddedEvent(int points)
+    {
+	    score += points;
+        //print("player: " + score);
+	}
     // Update is called once per frame
     void Update()
     {
@@ -63,16 +94,16 @@ public class SpaceCraft : MonoBehaviour
     // Shooting function
     void Shoot(int numberOfBullet, float spread)
     {
-        Debug.Log("Start rotation at: " + Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg);
+        //Debug.Log("Start rotation at: " + Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg);
         float spreadRange = spread / 2f;
         for (int i = 0; i < numberOfBullet; i++)
         {
             float startRotation = Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg + spreadRange;
             float rotation = startRotation - (spread / ((float) numberOfBullet - 1f)) * i;
-            Debug.Log("This is the rotation of" + i + ":" + rotation);
+            //Debug.Log("This is the rotation of" + i + ":" + rotation);
             GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.Euler(0f, 0f, rotation));
             Bullet script = bulletShooted.GetComponent<Bullet>();
-            Debug.Log("This is direction of " + i + ":" + new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
+            //Debug.Log("This is direction of " + i + ":" + new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
             script.Setup(new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
             //script.ApplyForce(new Vector2(1, 0));
         }
@@ -110,7 +141,7 @@ public class SpaceCraft : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "FatBirdFall")
         {
-            healthPoint--;
+            TakeDamage(1);
         }
     }
 
@@ -118,10 +149,24 @@ public class SpaceCraft : MonoBehaviour
     void GameOver()
     {
         print("game over");
-        SceneManager.LoadScene("GameOver");
+        Destroy(gameObject);
+        SceneManager.LoadScene("StartScene");
     }
 
     void LoadLevel(){
+        healthPoint--;
+        print(healthPoint);
         SceneManager.LoadScene(levelName);
     }
+
+    void TakeDamage(int damage)
+    {
+		healthPoint = Mathf.Max(0, healthPoint - damage);
+
+		// check for game over
+		if (healthPoint == 0)
+        {
+			Destroy(gameObject);
+		}
+	}
 }
