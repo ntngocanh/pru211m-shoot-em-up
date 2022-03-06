@@ -40,6 +40,7 @@
      <Compile Include="Assets\Scripts\Creep\Gift.cs" />
      <Compile Include="Assets\Scripts\Creep\Food.cs" />
      <Compile Include="Assets\Scripts\Util\Timer.cs" />
+     <Compile Include="Assets\Scripts\GameControl\ScrollBackground.cs" />
      <Compile Include="Assets\Scripts\Character\Bullet.cs" />
      <Compile Include="Assets\Scripts\Creep\Creep.cs" />
      <Compile Include="Assets\Scripts\Creep\Level2Spawner.cs" />
@@ -51,7 +52,6 @@
      <Compile Include="Assets\Scripts\GameControl\GameManager.cs" />
      <Compile Include="Assets\Scripts\Character\SpaceCraft.cs" />
      <Compile Include="Assets\Scripts\Creep\Egg.cs" />
-     <Compile Include="Assets\Scripts\GameControl\ScrollBackground.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
