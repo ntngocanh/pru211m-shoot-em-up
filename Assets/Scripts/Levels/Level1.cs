@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreepSpawner1 : MonoBehaviour
+public class Level1 : MonoBehaviour
 {
+    [SerializeField]
+    string nextLevelName;
     [SerializeField]
     GameObject prefabFatBird;
     // Start is called before the first frame update
@@ -51,6 +53,6 @@ public class CreepSpawner1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0) GameManager.Instance.LoadLevel(nextLevelName);
     }
 }

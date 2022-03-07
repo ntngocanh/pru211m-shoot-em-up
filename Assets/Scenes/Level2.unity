@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087da011900505c4bb13ec4d9300ba20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevelName: Asteroid
   prefabFatBird: {fileID: 8240481103918117198, guid: 12cbcb02bdb6e37438cb52ecb8f103e8, type: 3}
 --- !u!20 &519420031
 Camera:

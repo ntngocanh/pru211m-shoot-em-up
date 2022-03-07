@@ -65,7 +65,6 @@ public class SpaceCraft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0) LoadLevel();
         // Die if healt point below 1
         if (healthPoint <= 0)
         {
@@ -153,11 +152,6 @@ public class SpaceCraft : MonoBehaviour
         SceneManager.LoadScene("StartScene");
     }
 
-    void LoadLevel(){
-        healthPoint--;
-        print(healthPoint);
-        SceneManager.LoadScene(levelName);
-    }
 
     void TakeDamage(int damage)
     {

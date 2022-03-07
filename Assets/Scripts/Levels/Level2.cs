@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level2Spawner : MonoBehaviour
+public class Level2 : MonoBehaviour
 {
+    [SerializeField]
+    string nextLevelName;
     [SerializeField]
     GameObject prefabFatBird;
     Vector3 newScale;
@@ -76,6 +78,6 @@ public class Level2Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0) GameManager.Instance.LoadLevel(nextLevelName);
     }
 }
