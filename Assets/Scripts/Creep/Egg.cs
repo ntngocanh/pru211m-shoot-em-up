@@ -10,8 +10,8 @@ public class Egg : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject spacecraft = GameObject.FindGameObjectWithTag("Player");
-        GetComponent<Rigidbody2D>().AddForce(-1*spacecraft.transform.up * 4, ForceMode2D.Impulse);
+        Vector2 force = new Vector2(0, -1);
+        GetComponent<Rigidbody2D>().AddForce(force* 4, ForceMode2D.Impulse);
         //BoxCollider2D collider = GetComponent<BoxCollider2D>();
         //colliderHalfWidth = collider.size.x / 2;
         //colliderHalfHeight = collider.size.y / 2;
