@@ -10,6 +10,7 @@ public class FatBirdCreep : Creep
     public GameObject gift2;
     public GameObject gift3;
     public GameObject diePrefab;
+    public GameObject powerup;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +50,7 @@ public class FatBirdCreep : Creep
     }
     public override void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.CompareTag("Bullet"))
+        if (coll.gameObject.CompareTag("Bullet") || coll.gameObject.CompareTag("Player"))
         {
             health--;
             if (health <= 0)
@@ -69,22 +70,29 @@ public class FatBirdCreep : Creep
         }
         if (Random.Range(0f, 10f) < 1)
         {
-            int ran = Random.Range(0, 3);
-            if(ran == 0)
+            int ran = Random.Range(0, 10);
+            if (ran == 0)
             {
-                GameObject giftClone = Instantiate(gift1, transform.position, Quaternion.identity) as GameObject;
-                Gift script = gift1.GetComponent<Gift>();
+                GameObject powerupclone = Instantiate(powerup, transform.position, Quaternion.identity) as GameObject;
+                Powerup script = powerup.GetComponent<Powerup>();
                 script.ApplyForce(new Vector2(1, 0));
-            } else if (ran == 1)
+            }
+            else if (ran > 0 && ran < 4)
             {
                 GameObject giftClone = Instantiate(gift2, transform.position, Quaternion.identity) as GameObject;
                 Gift script = gift2.GetComponent<Gift>();
                 script.ApplyForce(new Vector2(1, 0));
             }
-            else
+            else if (ran > 3 && ran < 7)
             {
                 GameObject giftClone = Instantiate(gift3, transform.position, Quaternion.identity) as GameObject;
                 Gift script = gift3.GetComponent<Gift>();
+                script.ApplyForce(new Vector2(1, 0));
+            }
+            else
+            {
+                GameObject giftClone = Instantiate(gift1, transform.position, Quaternion.identity) as GameObject;
+                Gift script = gift1.GetComponent<Gift>();
                 script.ApplyForce(new Vector2(1, 0));
             }
         }

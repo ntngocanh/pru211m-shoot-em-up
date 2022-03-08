@@ -148,3 +148,7 @@ MonoBehaviour:
   gift2: {fileID: 8478956031497446077, guid: f20b29b89fbf69743a750e6b58da5937, type: 3}
   gift3: {fileID: 219686198853631345, guid: ef38445e75dcd114782315f9048b3398, type: 3}
   diePrefab: {fileID: 3513418924536030976, guid: f2d1ab95ded5f1047aa79e37d7c86f94, type: 3}
+  powerup: {fileID: 4348271976698543686, guid: 7f010e8165cdf864e86138d85ebcbc38, type: 3}
+  target1: {x: 0, y: 0}
+  target2: {x: 0, y: 0}
+  fly: 0

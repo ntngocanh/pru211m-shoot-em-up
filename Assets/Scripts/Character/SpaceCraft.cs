@@ -142,6 +142,10 @@ public class SpaceCraft : MonoBehaviour
         {
             TakeDamage(1);
         }
+        if (collision.collider.gameObject.tag == "Egg")
+        {
+            TakeDamage(1);
+        }
     }
 
     // game over
@@ -160,7 +164,9 @@ public class SpaceCraft : MonoBehaviour
 		// check for game over
 		if (healthPoint == 0)
         {
-			Destroy(gameObject);
-		}
+            Destroy(gameObject);
+            GameObject die = Instantiate(prefabExplosion, transform.position, Quaternion.identity) as GameObject;
+            Destroy(die, 1.2f);
+        }
 	}
 }
