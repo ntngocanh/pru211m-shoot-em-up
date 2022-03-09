@@ -32,9 +32,7 @@ public class SpaceCraft : MonoBehaviour
 
     // Fire support
     double canfire = 0.2;
-    GameObject shootingPointMid;
-    GameObject shootingPointLeft;
-    GameObject shootingPointRight;
+    int levelGun = 1;
 
     // movement support
     const float MoveUnitsPerSecond = 10;
@@ -94,14 +92,12 @@ public class SpaceCraft : MonoBehaviour
 
         // move to position and clamp in screen
         float step = MoveUnitsPerSecond * Time.deltaTime;
-        //transform.position = Vector3.MoveTowards(transform.position, position, step);
         transform.position = position;
         ClampInScreen();
 
         // shoot given bullets in given spread if click left mouse button
         if (Input.GetButton("Fire1") && (Time.time > canfire))
         {
-            //Shoot(2, 10);
             ShootSingleBullet();
             canfire = Time.time + 0.5;
         }
@@ -127,6 +123,7 @@ public class SpaceCraft : MonoBehaviour
     void ShootSingleBullet()
     {
         GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+        GameObject bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.2f, Quaternion.identity);
         Bullet script = bullet.GetComponent<Bullet>();
         script.ApplyForce(new Vector2(1, 0));
     } 
@@ -138,7 +135,7 @@ public class SpaceCraft : MonoBehaviour
 
     void LevelUp()
     {
-
+        levelGun++;
     }
 
     /// Clamps the character in the screen
