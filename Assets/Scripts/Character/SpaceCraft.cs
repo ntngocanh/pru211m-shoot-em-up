@@ -33,6 +33,9 @@ public class SpaceCraft : MonoBehaviour
     // Fire support
     double canfire = 0.2;
     int levelGun = 1;
+    GameObject bulletShooted1;
+    GameObject bulletShooted2;
+    GameObject bulletShooted3;
 
     // movement support
     const float MoveUnitsPerSecond = 10;
@@ -68,6 +71,7 @@ public class SpaceCraft : MonoBehaviour
         //colliderHalfHeight = collider.size.y / 2;
         //transform.position = new Vector3();
         ChangeBullet(IonBlaster);
+        levelGun = 1;
         print(healthPoint);
 		
     }
@@ -122,8 +126,24 @@ public class SpaceCraft : MonoBehaviour
 
     void ShootSingleBullet()
     {
-        GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
-        GameObject bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.2f, Quaternion.identity);
+        if (levelGun >= 3) levelGun = 3;
+        switch (levelGun)
+        {
+            case 1:
+                bulletShooted1 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+                break;
+            case 2:
+                bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f, Quaternion.identity);
+                bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f, Quaternion.identity);
+                break;
+            case 3:
+                bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f, Quaternion.identity);
+                bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f, Quaternion.identity);
+                bulletShooted3 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+                break;
+            default:
+                break;
+        }
         Bullet script = bullet.GetComponent<Bullet>();
         script.ApplyForce(new Vector2(1, 0));
     } 
@@ -131,11 +151,6 @@ public class SpaceCraft : MonoBehaviour
     void ChangeBullet(GameObject newBullet)
     {
         bullet = newBullet;
-    }
-
-    void LevelUp()
-    {
-        levelGun++;
     }
 
     /// Clamps the character in the screen
@@ -183,7 +198,7 @@ public class SpaceCraft : MonoBehaviour
                 ChangeBullet(LaserCanon);
                 break;
             case "Power-ups":
-                LevelUp();
+                levelGun += 1;
                 break;
         }
         //}
