@@ -22,6 +22,13 @@ public class SpaceCraft : MonoBehaviour
 
     [SerializeField]
     GameObject LaserCanon;
+
+    public AudioClip IonBlasterAudio;
+    public AudioClip NeutronGunAudio;
+    public AudioClip LaserCanonAudio;
+
+    public AudioSource audioSource;
+
     private Rigidbody2D myRigidBody;
     // saved for efficiency
     float colliderHalfWidth;
@@ -70,7 +77,7 @@ public class SpaceCraft : MonoBehaviour
         //colliderHalfWidth = collider.size.x / 2;
         //colliderHalfHeight = collider.size.y / 2;
         //transform.position = new Vector3();
-        ChangeBullet(IonBlaster);
+        ChangeBullet(LaserCanon);
         levelGun = 2;
         print(healthPoint);
 		
@@ -126,6 +133,20 @@ public class SpaceCraft : MonoBehaviour
 
     void ShootSingleBullet()
     {
+        //switch(bullet)
+        //{
+        //    case LaserCanon:
+        //        audioSource.PlayOneShot(LaserCanonAudio);
+        //        break;
+        //    case IonBlaster:
+        //        audioSource.PlayOneShot(IonBlasterAudio);
+        //        break;
+        //    case NeutronGun:
+        //        audioSource.PlayOneShot(NeutronGunAudio);
+        //        break;
+        //    default:
+        //        break;
+        //}
         if (levelGun >= 6) levelGun = 6;
         if (bullet != LaserCanon)
         {
@@ -152,20 +173,23 @@ public class SpaceCraft : MonoBehaviour
             switch (levelGun)
             {
                 case 2:
-                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.5f, Quaternion.identity);
                     break;
                 case 4:
-                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f, Quaternion.identity);
-                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f, Quaternion.identity);
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f + Vector3.up * 4.5f, Quaternion.identity);
                     break;
                 case 6:
-                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f, Quaternion.identity);
-                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f, Quaternion.identity);
-                    bulletShooted3 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted3 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.5f, Quaternion.identity);
                     break;
                 default:
                     break;
             }
+            Destroy(bulletShooted1, 0.1f);
+            Destroy(bulletShooted2, 0.1f);
+            Destroy(bulletShooted3, 0.1f);
         }
         
         Bullet script = bullet.GetComponent<Bullet>();
