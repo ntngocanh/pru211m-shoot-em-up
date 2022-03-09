@@ -7,10 +7,10 @@ public class SpaceCraft : MonoBehaviour
 {
     [SerializeField]
     GameObject prefabExplosion;
-    
+
     [SerializeField]
     string levelName;
-    
+
     [SerializeField]
     GameObject bullet;
 
@@ -47,10 +47,10 @@ public class SpaceCraft : MonoBehaviour
 
     // movement support
     const float MoveUnitsPerSecond = 10;
-    public static SpaceCraft instance = null;  
+    public static SpaceCraft instance = null;
     public static int score = 0;
- 
-         //Awake is always called before any Start functions
+
+    //Awake is always called before any Start functions
     void Awake()
     {
         //Check if instance already exists
@@ -62,13 +62,15 @@ public class SpaceCraft : MonoBehaviour
         //If instance already exists and it's not this:
         else if (instance != this)
         {
-            Destroy(gameObject);   
+            Destroy(gameObject);
         }
 
-        
+
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
-        
+        colliderHalfWidth = gameObject.GetComponent<CircleCollider2D>().radius;
+        colliderHalfHeight = gameObject.GetComponent<CircleCollider2D>().radius;
+
     }
 
     // Start is called before the first frame update
@@ -81,21 +83,21 @@ public class SpaceCraft : MonoBehaviour
         ChangeBullet(LaserCanon);
         levelGun = 2;
         print(healthPoint);
-		
+
     }
     public static void HandlePointsAddedEvent(int points)
     {
-	    score += points;
+        score += points;
         //print("player: " + score);
-	}
+    }
     // Update is called once per frame
     void Update()
     {
         // check for pausing game
-		if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown("escape"))
         {
-			MenuManager.GoToMenu(MenuName.Pause);
-		}
+            MenuManager.GoToMenu(MenuName.Pause);
+        }
         // Die if healt point below 1
         if (healthPoint <= 0)
         {
@@ -127,12 +129,12 @@ public class SpaceCraft : MonoBehaviour
         for (int i = 0; i < numberOfBullet; i++)
         {
             float startRotation = Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg + spreadRange;
-            float rotation = startRotation - (spread / ((float) numberOfBullet - 1f)) * i;
+            float rotation = startRotation - (spread / ((float)numberOfBullet - 1f)) * i;
             GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.Euler(0f, 0f, rotation));
             Bullet script = bulletShooted.GetComponent<Bullet>();
             script.Setup(new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
         }
-        
+
         //AudioSource source = GetComponent<AudioSource>();
         //source.PlayOneShot(audioClip);
     }
@@ -197,10 +199,10 @@ public class SpaceCraft : MonoBehaviour
             Destroy(bulletShooted2, 0.1f);
             Destroy(bulletShooted3, 0.1f);
         }
-        
+
         Bullet script = bullet.GetComponent<Bullet>();
         script.ApplyForce(new Vector2(1, 0));
-    } 
+    }
 
     void ChangeBullet(GameObject newBullet)
     {
@@ -235,9 +237,12 @@ public class SpaceCraft : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        switch(collision.gameObject.tag)
+        switch (collision.gameObject.tag)
         {
             case "FatBirdFall":
+                TakeDamage(1);
+                break;
+            case "Asteroid":
                 TakeDamage(1);
                 break;
             case "Egg":
@@ -274,15 +279,15 @@ public class SpaceCraft : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-		healthPoint = Mathf.Max(0, healthPoint - damage);
-
-		// check for game over
-		if (healthPoint == 0)
+        healthPoint = Mathf.Max(0, healthPoint - damage);
+        
+        GameObject die = Instantiate(prefabExplosion, transform.position, Quaternion.identity) as GameObject;
+        Destroy(die, 1.2f);
+        // check for game over
+        if (healthPoint == 0)
         {
             Destroy(gameObject);
-            GameObject die = Instantiate(prefabExplosion, transform.position, Quaternion.identity) as GameObject;
-            Destroy(die, 1.2f);
             GameOver();
         }
-	}
+    }
 }

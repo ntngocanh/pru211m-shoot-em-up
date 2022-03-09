@@ -11,6 +11,7 @@ TagManager:
   - Power-ups
   - LaserCannonBox
   - NeutronGunBox
+  - Asteroid
   layers:
   - Default
   - TransparentFX

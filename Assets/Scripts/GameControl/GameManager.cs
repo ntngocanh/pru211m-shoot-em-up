@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager {
+public class GameManager{
     private static GameManager instance;
     public static int score = 0;
     private GameManager() {
