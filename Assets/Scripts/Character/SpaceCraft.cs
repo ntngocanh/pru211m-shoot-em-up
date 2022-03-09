@@ -81,7 +81,7 @@ public class SpaceCraft : MonoBehaviour
         //colliderHalfHeight = collider.size.y / 2;
         //transform.position = new Vector3();
         ChangeBullet(LaserCanon);
-        levelGun = 2;
+        levelGun = 1;
         print(healthPoint);
 
     }
@@ -160,14 +160,14 @@ public class SpaceCraft : MonoBehaviour
         {
             switch (levelGun)
             {
-                case 2:
+                case 1:
                     bulletShooted1 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
                     break;
-                case 4:
+                case 2:
                     bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f, Quaternion.identity);
                     bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f, Quaternion.identity);
                     break;
-                case 6:
+                case 3:
                     bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f, Quaternion.identity);
                     bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f, Quaternion.identity);
                     bulletShooted3 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
@@ -180,14 +180,14 @@ public class SpaceCraft : MonoBehaviour
         {
             switch (levelGun)
             {
-                case 2:
+                case 1:
                     bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.5f, Quaternion.identity);
                     break;
-                case 4:
+                case 2:
                     bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f + Vector3.up * 4.5f, Quaternion.identity);
                     bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f + Vector3.up * 4.5f, Quaternion.identity);
                     break;
-                case 6:
+                case 3:
                     bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f + Vector3.up * 4.5f, Quaternion.identity);
                     bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f + Vector3.up * 4.5f, Quaternion.identity);
                     bulletShooted3 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.5f, Quaternion.identity);
