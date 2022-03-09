@@ -235,6 +235,7 @@ public class SpaceCraft : MonoBehaviour
     {
         print("game over");
         Destroy(gameObject);
+        GameManager.Instance.ResetPoint();
         SceneManager.LoadScene("StartScene");
     }
 
@@ -249,6 +250,7 @@ public class SpaceCraft : MonoBehaviour
             Destroy(gameObject);
             GameObject die = Instantiate(prefabExplosion, transform.position, Quaternion.identity) as GameObject;
             Destroy(die, 1.2f);
+            GameOver();
         }
 	}
 }
