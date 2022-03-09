@@ -127,23 +127,47 @@ public class SpaceCraft : MonoBehaviour
     void ShootSingleBullet()
     {
         if (levelGun >= 6) levelGun = 6;
-        switch (levelGun)
+        if (bullet != LaserCanon)
         {
-            case 2:
-                bulletShooted1 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
-                break;
-            case 4:
-                bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f, Quaternion.identity);
-                bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f, Quaternion.identity);
-                break;
-            case 6:
-                bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f, Quaternion.identity);
-                bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f, Quaternion.identity);
-                bulletShooted3 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
-                break;
-            default:
-                break;
+            switch (levelGun)
+            {
+                case 2:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+                    break;
+                case 4:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f, Quaternion.identity);
+                    break;
+                case 6:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f, Quaternion.identity);
+                    bulletShooted3 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+                    break;
+                default:
+                    break;
+            }
         }
+        else
+        {
+            switch (levelGun)
+            {
+                case 2:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+                    break;
+                case 4:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f, Quaternion.identity);
+                    break;
+                case 6:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f, Quaternion.identity);
+                    bulletShooted3 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+                    break;
+                default:
+                    break;
+            }
+        }
+        
         Bullet script = bullet.GetComponent<Bullet>();
         script.ApplyForce(new Vector2(1, 0));
     } 
@@ -186,7 +210,6 @@ public class SpaceCraft : MonoBehaviour
                 break;
             case "Egg":
                 TakeDamage(1);
-                Debug.Log("Dam trung");
                 break;
             case "IonBlasterBox":
                 ChangeBullet(IonBlaster);
