@@ -7,10 +7,15 @@ public class SpaceCraft : MonoBehaviour
 {
     [SerializeField]
     GameObject prefabExplosion;
+    
     [SerializeField]
     string levelName;
+    
     [SerializeField]
     GameObject bullet;
+
+    [SerializeField]
+    GameObject IonBlaster;
     private Rigidbody2D myRigidBody;
     // saved for efficiency
     float colliderHalfWidth;
@@ -85,7 +90,8 @@ public class SpaceCraft : MonoBehaviour
         // shoot given bullets in given spread if click left mouse button
         if (Input.GetButton("Fire1") && (Time.time > canfire))
         {
-            Shoot(5, 90); 
+            //Shoot(2, 10);
+            ShootSingleBullet();
             canfire = Time.time + 0.5;
         }
     }
@@ -93,22 +99,30 @@ public class SpaceCraft : MonoBehaviour
     // Shooting function
     void Shoot(int numberOfBullet, float spread)
     {
-        //Debug.Log("Start rotation at: " + Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg);
         float spreadRange = spread / 2f;
         for (int i = 0; i < numberOfBullet; i++)
         {
             float startRotation = Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg + spreadRange;
             float rotation = startRotation - (spread / ((float) numberOfBullet - 1f)) * i;
-            //Debug.Log("This is the rotation of" + i + ":" + rotation);
             GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.Euler(0f, 0f, rotation));
             Bullet script = bulletShooted.GetComponent<Bullet>();
-            //Debug.Log("This is direction of " + i + ":" + new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
             script.Setup(new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
-            //script.ApplyForce(new Vector2(1, 0));
         }
         
         //AudioSource source = GetComponent<AudioSource>();
         //source.PlayOneShot(audioClip);
+    }
+
+    void ShootSingleBullet()
+    {
+        GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+        Bullet script = bullet.GetComponent<Bullet>();
+        script.ApplyForce(new Vector2(1, 0));
+    } 
+
+    void ChangeBullet(GameObject newBullet)
+    {
+        bullet = newBullet;
     }
 
     /// Clamps the character in the screen
@@ -145,6 +159,10 @@ public class SpaceCraft : MonoBehaviour
         if (collision.collider.gameObject.tag == "Egg")
         {
             TakeDamage(1);
+        }
+        if (collision.collider.gameObject.tag == "IonBlasterBox")
+        {
+            ChangeBullet(IonBlaster);
         }
     }
 
