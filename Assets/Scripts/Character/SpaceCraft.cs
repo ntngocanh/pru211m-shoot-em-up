@@ -16,6 +16,12 @@ public class SpaceCraft : MonoBehaviour
 
     [SerializeField]
     GameObject IonBlaster;
+
+    [SerializeField]
+    GameObject NeutronGun;
+
+    [SerializeField]
+    GameObject LaserCanon;
     private Rigidbody2D myRigidBody;
     // saved for efficiency
     float colliderHalfWidth;
@@ -43,7 +49,7 @@ public class SpaceCraft : MonoBehaviour
         //If instance already exists and it's not this:
         else if (instance != this)
         {
-        Destroy(gameObject);   
+            Destroy(gameObject);   
         }
 
         
@@ -59,6 +65,7 @@ public class SpaceCraft : MonoBehaviour
         //colliderHalfWidth = collider.size.x / 2;
         //colliderHalfHeight = collider.size.y / 2;
         //transform.position = new Vector3();
+        ChangeBullet(IonBlaster);
         print(healthPoint);
 		
     }
