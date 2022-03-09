@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Level1 : MonoBehaviour
 {
     [SerializeField]
@@ -55,4 +55,6 @@ public class Level1 : MonoBehaviour
     {
         if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0) GameManager.Instance.LoadLevel(nextLevelName);
     }
+
+    
 }

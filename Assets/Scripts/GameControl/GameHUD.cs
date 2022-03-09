@@ -6,6 +6,9 @@ public class GameHUD : MonoBehaviour
 {
     [SerializeField]
     public Text scoreText;
+    
+    [SerializeField]
+    Text levelText;
     public int score = 0;
     public static GameHUD instance = null;  
  
@@ -59,4 +62,8 @@ public class GameHUD : MonoBehaviour
 		scoreText.text = "Score: " + score;
         //print("Score: " + score);
 	}
+
+    public void HandlePauseButtonClicked(){
+        MenuManager.GoToMenu(MenuName.Pause);
+    }
 }
