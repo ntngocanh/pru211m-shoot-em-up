@@ -22,6 +22,13 @@ public class SpaceCraft : MonoBehaviour
 
     [SerializeField]
     GameObject LaserCanon;
+
+    public AudioClip IonBlasterAudio;
+    public AudioClip NeutronGunAudio;
+    public AudioClip LaserCanonAudio;
+
+    public AudioSource audioSource;
+
     private Rigidbody2D myRigidBody;
     // saved for efficiency
     float colliderHalfWidth;
@@ -36,6 +43,7 @@ public class SpaceCraft : MonoBehaviour
     GameObject bulletShooted1;
     GameObject bulletShooted2;
     GameObject bulletShooted3;
+    string gunType;
 
     // movement support
     const float MoveUnitsPerSecond = 10;
@@ -70,7 +78,7 @@ public class SpaceCraft : MonoBehaviour
         //colliderHalfWidth = collider.size.x / 2;
         //colliderHalfHeight = collider.size.y / 2;
         //transform.position = new Vector3();
-        ChangeBullet(IonBlaster);
+        ChangeBullet(LaserCanon);
         levelGun = 2;
         print(healthPoint);
 		
@@ -131,24 +139,65 @@ public class SpaceCraft : MonoBehaviour
 
     void ShootSingleBullet()
     {
-        if (levelGun >= 6) levelGun = 6;
-        switch (levelGun)
+        switch (gunType)
         {
-            case 2:
-                bulletShooted1 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+            case "LaserCannonCI2Weak":
+                audioSource.PlayOneShot(LaserCanonAudio);
                 break;
-            case 4:
-                bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f, Quaternion.identity);
-                bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f, Quaternion.identity);
+            case "IonBlasterSingle":
+                audioSource.PlayOneShot(IonBlasterAudio);
                 break;
-            case 6:
-                bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f, Quaternion.identity);
-                bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f, Quaternion.identity);
-                bulletShooted3 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+            case "NeutronGunCI2Medium":
+                audioSource.PlayOneShot(NeutronGunAudio);
                 break;
             default:
                 break;
         }
+        if (levelGun >= 6) levelGun = 6;
+        if (bullet != LaserCanon)
+        {
+            switch (levelGun)
+            {
+                case 2:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+                    break;
+                case 4:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f, Quaternion.identity);
+                    break;
+                case 6:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f, Quaternion.identity);
+                    bulletShooted3 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            switch (levelGun)
+            {
+                case 2:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.5f, Quaternion.identity);
+                    break;
+                case 4:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f + Vector3.up * 4.5f, Quaternion.identity);
+                    break;
+                case 6:
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted3 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.5f, Quaternion.identity);
+                    break;
+                default:
+                    break;
+            }
+            Destroy(bulletShooted1, 0.1f);
+            Destroy(bulletShooted2, 0.1f);
+            Destroy(bulletShooted3, 0.1f);
+        }
+        
         Bullet script = bullet.GetComponent<Bullet>();
         script.ApplyForce(new Vector2(1, 0));
     } 
@@ -156,6 +205,8 @@ public class SpaceCraft : MonoBehaviour
     void ChangeBullet(GameObject newBullet)
     {
         bullet = newBullet;
+        gunType = bullet.name;
+        Debug.Log(gunType);
     }
 
     /// Clamps the character in the screen
@@ -191,7 +242,6 @@ public class SpaceCraft : MonoBehaviour
                 break;
             case "Egg":
                 TakeDamage(1);
-                Debug.Log("Dam trung");
                 break;
             case "IonBlasterBox":
                 ChangeBullet(IonBlaster);
@@ -217,6 +267,7 @@ public class SpaceCraft : MonoBehaviour
     {
         print("game over");
         Destroy(gameObject);
+        GameManager.Instance.ResetPoint();
         SceneManager.LoadScene("StartScene");
     }
 
@@ -231,6 +282,7 @@ public class SpaceCraft : MonoBehaviour
             Destroy(gameObject);
             GameObject die = Instantiate(prefabExplosion, transform.position, Quaternion.identity) as GameObject;
             Destroy(die, 1.2f);
+            GameOver();
         }
 	}
 }
