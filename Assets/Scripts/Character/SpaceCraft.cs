@@ -83,6 +83,11 @@ public class SpaceCraft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check for pausing game
+		if (Input.GetKeyDown("escape"))
+        {
+			MenuManager.GoToMenu(MenuName.Pause);
+		}
         // Die if healt point below 1
         if (healthPoint <= 0)
         {

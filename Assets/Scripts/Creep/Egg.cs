@@ -63,7 +63,7 @@ public class Egg : MonoBehaviour
         else if (position.y - colliderHalfHeight < ScreenUtils.ScreenBottom)
         {
             position.y = ScreenUtils.ScreenBottom + colliderHalfHeight;
-            print(transform.position.y + "    " + (ScreenUtils.ScreenBottom + colliderHalfHeight));
+//            print(transform.position.y + "    " + (ScreenUtils.ScreenBottom + colliderHalfHeight));
 
         }
         transform.position = position;

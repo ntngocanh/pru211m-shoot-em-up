@@ -37,4 +37,5 @@ public class GameManager {
     public void LoadLevel(string levelName){
         SceneManager.LoadScene(levelName);
     }
+
 }

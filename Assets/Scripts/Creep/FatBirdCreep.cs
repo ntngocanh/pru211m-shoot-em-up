@@ -38,7 +38,9 @@ public class FatBirdCreep : Creep
         }
         CreepFire();
     }
-
+    void FixedUpdate(){
+        
+    }
     void CreepFire()
     {
         if(Random.Range(0f, 10000f) < 1)

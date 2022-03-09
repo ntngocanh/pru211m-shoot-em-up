@@ -47,7 +47,7 @@
      <Compile Include="Assets\Scripts\Creep\Creep.cs" />
      <Compile Include="Assets\Scripts\Levels\Level2.cs" />
      <Compile Include="Assets\Scripts\Levels\LevelAsteroid1.cs" />
-     <Compile Include="Assets\Scripts\GameControl\StartScene.cs" />
+     <Compile Include="Assets\Scripts\Levels\StartScene.cs" />
      <Compile Include="Assets\Scripts\GameControl\AudioClipName.cs" />
      <Compile Include="Assets\Scripts\Util\GameInitializer.cs" />
      <Compile Include="Assets\Scripts\GameControl\GameHUD.cs" />
@@ -59,7 +59,9 @@
      <Compile Include="Assets\Scripts\GameControl\GameManager.cs" />
      <Compile Include="Assets\Scripts\Character\SpaceCraft.cs" />
      <Compile Include="Assets\Scripts\Creep\Egg.cs" />
-     <Compile Include="Assets\Scripts\GameControl\PauseMenu.cs" />
+     <Compile Include="Assets\Scripts\Menus\PauseMenu.cs" />
+     <Compile Include="Assets\Scripts\Menus\MenuName.cs" />
+     <Compile Include="Assets\Scripts\Menus\MenuManager.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
