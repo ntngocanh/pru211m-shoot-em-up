@@ -13,10 +13,11 @@ public class Asteroid : MonoBehaviour
         ApplyForce(GetRandomDirectionVector());
     }
 
-    void OnTriggerEnter2D(Collider2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.CompareTag("Bullet"))
         {
+            print("Bullet hit");
             //AudioManager.Play(AudioClipName.AsteroidHit);
             Destroy(coll.gameObject);
 
