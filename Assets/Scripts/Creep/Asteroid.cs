@@ -43,9 +43,9 @@ public class Asteroid : MonoBehaviour
                                          transform.position, Quaternion.identity);
                 newAsteroid.GetComponent<Asteroid>().StartMoving(
                     Random.Range(0, 2 * Mathf.PI));
-                newAsteroid = Instantiate<GameObject>(gameObject,
+                GameObject newAsteroid2 = Instantiate<GameObject>(gameObject,
                     transform.position, Quaternion.identity);
-                newAsteroid.GetComponent<Asteroid>().StartMoving(
+                newAsteroid2.GetComponent<Asteroid>().StartMoving(
                     Random.Range(0, 2 * Mathf.PI));
                 Destroy(gameObject);
             }
@@ -53,7 +53,7 @@ public class Asteroid : MonoBehaviour
     }
 
     public void ApplyForce(Vector2 forceDirection){
-        const float forceMagnitude = 3;
+        const float forceMagnitude = 5;
         GetComponent<Rigidbody2D>().AddForce(
             forceMagnitude*forceDirection,
             ForceMode2D.Impulse
