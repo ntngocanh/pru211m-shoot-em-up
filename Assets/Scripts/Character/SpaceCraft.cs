@@ -32,7 +32,7 @@ public class SpaceCraft : MonoBehaviour
 
     // Fire support
     double canfire = 0.2;
-    int levelGun = 1;
+    int levelGun = 2;
     GameObject bulletShooted1;
     GameObject bulletShooted2;
     GameObject bulletShooted3;
@@ -71,7 +71,7 @@ public class SpaceCraft : MonoBehaviour
         //colliderHalfHeight = collider.size.y / 2;
         //transform.position = new Vector3();
         ChangeBullet(IonBlaster);
-        levelGun = 1;
+        levelGun = 2;
         print(healthPoint);
 		
     }
@@ -126,17 +126,17 @@ public class SpaceCraft : MonoBehaviour
 
     void ShootSingleBullet()
     {
-        if (levelGun >= 3) levelGun = 3;
+        if (levelGun >= 6) levelGun = 6;
         switch (levelGun)
         {
-            case 1:
+            case 2:
                 bulletShooted1 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
                 break;
-            case 2:
+            case 4:
                 bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f, Quaternion.identity);
                 bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f, Quaternion.identity);
                 break;
-            case 3:
+            case 6:
                 bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f, Quaternion.identity);
                 bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f, Quaternion.identity);
                 bulletShooted3 = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
@@ -177,31 +177,34 @@ public class SpaceCraft : MonoBehaviour
         transform.position = position;
     }
 
-    // Subtract HP when touch creep
     void OnCollisionEnter2D(Collision2D collision)
     {
-        switch(collision.collider.gameObject.tag)
+        switch(collision.gameObject.tag)
         {
             case "FatBirdFall":
                 TakeDamage(1);
                 break;
             case "Egg":
                 TakeDamage(1);
+                Debug.Log("Dam trung");
                 break;
             case "IonBlasterBox":
                 ChangeBullet(IonBlaster);
+                levelGun += 1;
                 break;
             case "NeutronGunBox":
                 ChangeBullet(NeutronGun);
+                levelGun += 1;
                 break;
             case "LaserCannonBox":
                 ChangeBullet(LaserCanon);
+                levelGun += 1;
                 break;
             case "Power-ups":
                 levelGun += 1;
+                Debug.Log(levelGun);
                 break;
         }
-        //}
     }
 
     // game over

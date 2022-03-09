@@ -36,26 +36,18 @@ public class Bullet : MonoBehaviour
     {
 		Destroy(gameObject);
 	}
+
     // Destroy if collide with creep
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collider.gameObject.tag == "FatBirdFall")
+        //GameObject gameObject = GameObject.FindGameObjectWithTag("Bullet");
+        if (collision.gameObject.tag == "FatBirdFall")
         {
             GameManager.Instance.AddPoints(5);
-            //GameHUD hud = GameHUD.instance;
-            //print("from bullet: "+ hud.Score);
             Destroy(gameObject);
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        //GameObject gameObject = GameObject.FindGameObjectWithTag("Bullet");
-        if(collision.gameObject.tag == "FatBirdFall")
-        {
-            Destroy(gameObject);
-        }
-    }
     public void ApplyForce(Vector2 forceDirection){
         const float forceMagnitude = 10;
         GetComponent<Rigidbody2D>().AddForce(
