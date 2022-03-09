@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 328684348224013982}
   m_Layer: 8
   m_Name: IonBlaster
-  m_TagString: Untagged
+  m_TagString: IonBlasterBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

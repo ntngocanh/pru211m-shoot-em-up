@@ -7,6 +7,10 @@ TagManager:
   - FatBirdFall
   - Bullet
   - Egg
+  - IonBlasterBox
+  - Power-ups
+  - LaserCannonBox
+  - NeutronGunBox
   layers:
   - Default
   - TransparentFX

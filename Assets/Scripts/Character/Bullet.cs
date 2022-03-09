@@ -16,9 +16,9 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject spacecraft = GameObject.FindGameObjectWithTag("Player");
-        //GetComponent<Rigidbody2D>().AddForce(spacecraft.transform.up*10, ForceMode2D.Impulse);
         myRigidbody = GetComponent<Rigidbody2D>() as Rigidbody2D;
+        GameObject spacecraft = GameObject.FindGameObjectWithTag("Player");
+        GetComponent<Rigidbody2D>().AddForce(spacecraft.transform.up * 10, ForceMode2D.Impulse);
 
     }
 

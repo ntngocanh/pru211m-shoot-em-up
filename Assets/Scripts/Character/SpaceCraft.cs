@@ -7,10 +7,21 @@ public class SpaceCraft : MonoBehaviour
 {
     [SerializeField]
     GameObject prefabExplosion;
+    
     [SerializeField]
     string levelName;
+    
     [SerializeField]
     GameObject bullet;
+
+    [SerializeField]
+    GameObject IonBlaster;
+
+    [SerializeField]
+    GameObject NeutronGun;
+
+    [SerializeField]
+    GameObject LaserCanon;
     private Rigidbody2D myRigidBody;
     // saved for efficiency
     float colliderHalfWidth;
@@ -21,6 +32,8 @@ public class SpaceCraft : MonoBehaviour
 
     // Fire support
     double canfire = 0.2;
+    int levelGun = 1;
+
     // movement support
     const float MoveUnitsPerSecond = 10;
     public static SpaceCraft instance = null;  
@@ -38,7 +51,7 @@ public class SpaceCraft : MonoBehaviour
         //If instance already exists and it's not this:
         else if (instance != this)
         {
-        Destroy(gameObject);   
+            Destroy(gameObject);   
         }
 
         
@@ -54,6 +67,7 @@ public class SpaceCraft : MonoBehaviour
         //colliderHalfWidth = collider.size.x / 2;
         //colliderHalfHeight = collider.size.y / 2;
         //transform.position = new Vector3();
+        ChangeBullet(IonBlaster);
         print(healthPoint);
 		
     }
@@ -78,14 +92,13 @@ public class SpaceCraft : MonoBehaviour
 
         // move to position and clamp in screen
         float step = MoveUnitsPerSecond * Time.deltaTime;
-        //transform.position = Vector3.MoveTowards(transform.position, position, step);
         transform.position = position;
         ClampInScreen();
 
         // shoot given bullets in given spread if click left mouse button
         if (Input.GetButton("Fire1") && (Time.time > canfire))
         {
-            Shoot(5, 90); 
+            ShootSingleBullet();
             canfire = Time.time + 0.5;
         }
     }
@@ -93,22 +106,36 @@ public class SpaceCraft : MonoBehaviour
     // Shooting function
     void Shoot(int numberOfBullet, float spread)
     {
-        //Debug.Log("Start rotation at: " + Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg);
         float spreadRange = spread / 2f;
         for (int i = 0; i < numberOfBullet; i++)
         {
             float startRotation = Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg + spreadRange;
             float rotation = startRotation - (spread / ((float) numberOfBullet - 1f)) * i;
-            //Debug.Log("This is the rotation of" + i + ":" + rotation);
             GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.Euler(0f, 0f, rotation));
             Bullet script = bulletShooted.GetComponent<Bullet>();
-            //Debug.Log("This is direction of " + i + ":" + new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
             script.Setup(new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
-            //script.ApplyForce(new Vector2(1, 0));
         }
         
         //AudioSource source = GetComponent<AudioSource>();
         //source.PlayOneShot(audioClip);
+    }
+
+    void ShootSingleBullet()
+    {
+        GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.identity);
+        GameObject bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.2f, Quaternion.identity);
+        Bullet script = bullet.GetComponent<Bullet>();
+        script.ApplyForce(new Vector2(1, 0));
+    } 
+
+    void ChangeBullet(GameObject newBullet)
+    {
+        bullet = newBullet;
+    }
+
+    void LevelUp()
+    {
+        levelGun++;
     }
 
     /// Clamps the character in the screen
@@ -138,14 +165,28 @@ public class SpaceCraft : MonoBehaviour
     // Subtract HP when touch creep
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.tag == "FatBirdFall")
+        switch(collision.collider.gameObject.tag)
         {
-            TakeDamage(1);
+            case "FatBirdFall":
+                TakeDamage(1);
+                break;
+            case "Egg":
+                TakeDamage(1);
+                break;
+            case "IonBlasterBox":
+                ChangeBullet(IonBlaster);
+                break;
+            case "NeutronGunBox":
+                ChangeBullet(NeutronGun);
+                break;
+            case "LaserCannonBox":
+                ChangeBullet(LaserCanon);
+                break;
+            case "Power-ups":
+                LevelUp();
+                break;
         }
-        if (collision.collider.gameObject.tag == "Egg")
-        {
-            TakeDamage(1);
-        }
+        //}
     }
 
     // game over

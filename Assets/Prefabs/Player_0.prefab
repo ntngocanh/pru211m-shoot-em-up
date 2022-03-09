@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3802493976355469016}
   - component: {fileID: 3802493976355469017}
   - component: {fileID: -3946047011539219852}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player_0
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -100,6 +100,9 @@ MonoBehaviour:
   prefabExplosion: {fileID: 3849348488894933186, guid: 4595f502cb3776341aab7b59fbaa362f, type: 3}
   levelName: 
   bullet: {fileID: 5326195693295967522, guid: 6d1a267856bcb8b4d9974e90948ff8a3, type: 3}
+  IonBlaster: {fileID: 300113317695871732, guid: edf84754e76c9584299de8c3e7784e30, type: 3}
+  NeutronGun: {fileID: 3677742173962327622, guid: 38824cfb1486b51469b875fa4bb65f55, type: 3}
+  LaserCanon: {fileID: 4674458124456743827, guid: 94889026be610ae4c8f87cd245e67f53, type: 3}
 --- !u!58 &3802493976355469017
 CircleCollider2D:
   m_ObjectHideFlags: 0
