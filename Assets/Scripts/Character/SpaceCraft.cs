@@ -43,6 +43,7 @@ public class SpaceCraft : MonoBehaviour
     GameObject bulletShooted1;
     GameObject bulletShooted2;
     GameObject bulletShooted3;
+    string gunType;
 
     // movement support
     const float MoveUnitsPerSecond = 10;
@@ -133,20 +134,20 @@ public class SpaceCraft : MonoBehaviour
 
     void ShootSingleBullet()
     {
-        //switch(bullet)
-        //{
-        //    case LaserCanon:
-        //        audioSource.PlayOneShot(LaserCanonAudio);
-        //        break;
-        //    case IonBlaster:
-        //        audioSource.PlayOneShot(IonBlasterAudio);
-        //        break;
-        //    case NeutronGun:
-        //        audioSource.PlayOneShot(NeutronGunAudio);
-        //        break;
-        //    default:
-        //        break;
-        //}
+        switch (gunType)
+        {
+            case "LaserCannonCI2Weak":
+                audioSource.PlayOneShot(LaserCanonAudio);
+                break;
+            case "IonBlasterSingle":
+                audioSource.PlayOneShot(IonBlasterAudio);
+                break;
+            case "NeutronGunCI2Medium":
+                audioSource.PlayOneShot(NeutronGunAudio);
+                break;
+            default:
+                break;
+        }
         if (levelGun >= 6) levelGun = 6;
         if (bullet != LaserCanon)
         {
@@ -199,6 +200,8 @@ public class SpaceCraft : MonoBehaviour
     void ChangeBullet(GameObject newBullet)
     {
         bullet = newBullet;
+        gunType = bullet.name;
+        Debug.Log(gunType);
     }
 
     /// Clamps the character in the screen
