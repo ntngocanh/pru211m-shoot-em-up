@@ -32,6 +32,10 @@ public class SpaceCraft : MonoBehaviour
 
     // Fire support
     double canfire = 0.2;
+    GameObject shootingPointMid;
+    GameObject shootingPointLeft;
+    GameObject shootingPointRight;
+
     // movement support
     const float MoveUnitsPerSecond = 10;
     public static SpaceCraft instance = null;  
@@ -132,6 +136,11 @@ public class SpaceCraft : MonoBehaviour
         bullet = newBullet;
     }
 
+    void LevelUp()
+    {
+
+    }
+
     /// Clamps the character in the screen
     void ClampInScreen()
     {
@@ -170,32 +179,16 @@ public class SpaceCraft : MonoBehaviour
             case "IonBlasterBox":
                 ChangeBullet(IonBlaster);
                 break;
-            case "NeutronGun":
+            case "NeutronGunBox":
                 ChangeBullet(NeutronGun);
                 break;
             case "LaserCannonBox":
                 ChangeBullet(LaserCanon);
                 break;
+            case "Power-ups":
+                LevelUp();
+                break;
         }
-        //if (collision.collider.gameObject.tag == "FatBirdFall")
-        //{
-        //    TakeDamage(1);
-        //}
-        //if (collision.collider.gameObject.tag == "Egg")
-        //{
-        //    TakeDamage(1);
-        //}
-        //if (collision.collider.gameObject.tag == "IonBlasterBox")
-        //{
-        //    ChangeBullet(IonBlaster);
-        //}
-        //if (collision.collider.gameObject.tag == "NeutronGunBox")
-        //{
-        //    ChangeBullet(NeutronGun);
-        //}
-        //if (collision.collider.gameObject.tag == "LaserCannonBox")
-        //{
-        //    ChangeBullet(LaserCanon);
         //}
     }
 
