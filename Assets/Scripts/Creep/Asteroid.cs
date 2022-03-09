@@ -22,7 +22,7 @@ public class Asteroid : MonoBehaviour
             Destroy(coll.gameObject);
 
             // destroy or split as appropriate
-            if (transform.localScale.x < 0.5f)
+            if (transform.localScale.x < 0.8f)
             {
                 Destroy(gameObject);
             }
