@@ -159,18 +159,44 @@ public class SpaceCraft : MonoBehaviour
     // Subtract HP when touch creep
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.tag == "FatBirdFall")
+        switch(collision.collider.gameObject.tag)
         {
-            TakeDamage(1);
+            case "FatBirdFall":
+                TakeDamage(1);
+                break;
+            case "Egg":
+                TakeDamage(1);
+                break;
+            case "IonBlasterBox":
+                ChangeBullet(IonBlaster);
+                break;
+            case "NeutronGun":
+                ChangeBullet(NeutronGun);
+                break;
+            case "LaserCannonBox":
+                ChangeBullet(LaserCanon);
+                break;
         }
-        if (collision.collider.gameObject.tag == "Egg")
-        {
-            TakeDamage(1);
-        }
-        if (collision.collider.gameObject.tag == "IonBlasterBox")
-        {
-            ChangeBullet(IonBlaster);
-        }
+        //if (collision.collider.gameObject.tag == "FatBirdFall")
+        //{
+        //    TakeDamage(1);
+        //}
+        //if (collision.collider.gameObject.tag == "Egg")
+        //{
+        //    TakeDamage(1);
+        //}
+        //if (collision.collider.gameObject.tag == "IonBlasterBox")
+        //{
+        //    ChangeBullet(IonBlaster);
+        //}
+        //if (collision.collider.gameObject.tag == "NeutronGunBox")
+        //{
+        //    ChangeBullet(NeutronGun);
+        //}
+        //if (collision.collider.gameObject.tag == "LaserCannonBox")
+        //{
+        //    ChangeBullet(LaserCanon);
+        //}
     }
 
     // game over
