@@ -7,7 +7,6 @@ public class Restart : MonoBehaviour
 {
     public void RestartGame()
     {
-        Debug.Log("Restart called");
         SceneManager.LoadScene("SampleScene"); // loads current scene
     }
 
