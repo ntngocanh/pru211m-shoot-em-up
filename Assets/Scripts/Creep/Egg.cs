@@ -35,6 +35,7 @@ public class Egg : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void ApplyForce(Vector2 forceDirection)
     {
         const float forceMagnitude = 5;
