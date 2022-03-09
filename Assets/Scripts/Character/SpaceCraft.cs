@@ -279,8 +279,10 @@ public class SpaceCraft : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-        healthPoint = Mathf.Max(0, healthPoint - damage);
-        
+        GameManager.Instance.TakeDamage(damage);
+        print("Game manager lives: "+ GameManager.lives);
+        healthPoint -= damage;
+        print("Spacecraft lives: "+ healthPoint);
         GameObject die = Instantiate(prefabExplosion, transform.position, Quaternion.identity) as GameObject;
         Destroy(die, 1.2f);
         // check for game over

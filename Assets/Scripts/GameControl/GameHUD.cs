@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class GameHUD : MonoBehaviour
 {
     [SerializeField]
+    public GameObject[] hearts;
+    [SerializeField]
     public Text scoreText;
     
     [SerializeField]
@@ -43,6 +45,7 @@ public class GameHUD : MonoBehaviour
 
     void Update(){
 		scoreText.text = "Score: " + GameManager.score;
+        CheckLivesChanged();
     }
     /// <summary>
 	/// Gets the score
@@ -65,5 +68,11 @@ public class GameHUD : MonoBehaviour
 
     public void HandlePauseButtonClicked(){
         MenuManager.GoToMenu(MenuName.Pause);
+    }
+
+    public void CheckLivesChanged(){
+        if(GameManager.lives < hearts.Length){
+            Destroy(hearts[GameManager.lives].gameObject);
+        }
     }
 }
