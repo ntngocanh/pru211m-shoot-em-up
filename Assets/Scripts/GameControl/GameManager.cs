@@ -37,9 +37,10 @@ public class GameManager{
     public void TakeDamage(int damage){
         lives -= damage;
     }
-    public void ResetPoint()
+    public void Reset()
     {
         score = 0;
+        lives = 5;
     }
     public void LoadLevel(string levelName){
         SceneManager.LoadScene(levelName);

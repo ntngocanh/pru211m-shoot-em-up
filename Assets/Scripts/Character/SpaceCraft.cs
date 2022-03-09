@@ -73,6 +73,7 @@ public class SpaceCraft : MonoBehaviour
 
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -270,10 +271,7 @@ public class SpaceCraft : MonoBehaviour
     // game over
     void GameOver()
     {
-        print("game over");
-        Destroy(gameObject);
-        GameManager.Instance.ResetPoint();
-        SceneManager.LoadScene("StartScene");
+        LevelManager.GameOver();
     }
 
 

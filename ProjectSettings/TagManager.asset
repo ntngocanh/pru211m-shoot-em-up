@@ -12,6 +12,7 @@ TagManager:
   - LaserCannonBox
   - NeutronGunBox
   - Asteroid
+  - HUD
   layers:
   - Default
   - TransparentFX

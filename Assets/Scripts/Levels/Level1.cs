@@ -53,8 +53,10 @@ public class Level1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0) GameManager.Instance.LoadLevel(nextLevelName);
+        if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0) Invoke("LoadLevel", 2);;
     }
 
-    
+    void LoadLevel(){
+        GameManager.Instance.LoadLevel(nextLevelName);
+    }
 }

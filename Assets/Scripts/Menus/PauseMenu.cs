@@ -38,6 +38,7 @@ public class PauseMenu : MonoBehaviour
 		Time.timeScale = 1;
 		Destroy(gameObject);
         Destroy(GameObject.FindGameObjectWithTag("Player"));
+		Destroy(GameObject.FindGameObjectWithTag("HUD"));
 		MenuManager.GoToMenu(MenuName.Main);
 	}
 }
