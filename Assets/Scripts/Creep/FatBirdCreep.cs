@@ -43,7 +43,7 @@ public class FatBirdCreep : Creep
     }
     void CreepFire()
     {
-        if(Random.Range(0f, 10000f) < 1)
+        if(Random.Range(0f, 7000f) < 1)
         {
             GameObject eggClone = Instantiate(egg, transform.position, Quaternion.identity) as GameObject;
             Egg script = egg.GetComponent<Egg>();
@@ -70,7 +70,7 @@ public class FatBirdCreep : Creep
         {
             GameObject foodClone = Instantiate(food, transform.position, Quaternion.identity) as GameObject;
         }
-        if (Random.Range(0f, 10f) < 1)
+        if (Random.Range(0f, 15f) < 1)
         {
             int ran = Random.Range(0, 10);
             if (ran == 0)
