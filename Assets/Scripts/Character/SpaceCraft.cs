@@ -83,7 +83,7 @@ public class SpaceCraft : MonoBehaviour
         //colliderHalfWidth = collider.size.x / 2;
         //colliderHalfHeight = collider.size.y / 2;
         //transform.position = new Vector3();
-        ChangeBullet(LaserCanon);
+        ChangeBullet(IonBlaster);
         levelGun = 1;
         print(healthPoint);
 

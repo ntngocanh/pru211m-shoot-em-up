@@ -33,7 +33,7 @@ public class Level1 : MonoBehaviour
 
         // add rows of blocks
         Vector2 currentPosition = new Vector2(leftBlockOffset, topRowOffset);
-        for (int row = 0; row < 3; row++)
+        for (int row = 0; row < 2; row++)
         {
             for (int column = 0; column < blocksPerRow; column++)
             {
