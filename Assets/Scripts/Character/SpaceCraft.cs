@@ -27,6 +27,8 @@ public class SpaceCraft : MonoBehaviour
     public AudioClip NeutronGunAudio;
     public AudioClip LaserCanonAudio;
 
+    public AudioClip eatingDrumStick;
+
     public AudioSource audioSource;
 
     private Rigidbody2D myRigidBody;
@@ -264,6 +266,10 @@ public class SpaceCraft : MonoBehaviour
             case "Power-ups":
                 levelGun += 1;
                 Debug.Log(levelGun);
+                break;
+            case "Food":
+                GameManager.Instance.AddPoints(5);
+                audioSource.PlayOneShot(eatingDrumStick);
                 break;
         }
     }
