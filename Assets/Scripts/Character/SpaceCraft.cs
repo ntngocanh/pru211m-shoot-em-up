@@ -248,15 +248,12 @@ public class SpaceCraft : MonoBehaviour
                 break;
             case "IonBlasterBox":
                 ChangeBullet(IonBlaster);
-                levelGun += 1;
                 break;
             case "NeutronGunBox":
                 ChangeBullet(NeutronGun);
-                levelGun += 1;
                 break;
             case "LaserCannonBox":
                 ChangeBullet(LaserCanon);
-                levelGun += 1;
                 break;
             case "Power-ups":
                 levelGun += 1;
