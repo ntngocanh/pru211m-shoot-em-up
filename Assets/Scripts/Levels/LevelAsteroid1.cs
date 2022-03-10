@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LevelAsteroid1 : MonoBehaviour
 {
-    
+    [SerializeField]
+    string nextLevelName;
     // needed for spawning
     [SerializeField]
     GameObject prefabAsteroid;
@@ -26,10 +27,6 @@ public class LevelAsteroid1 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void SpawnBear()
     {
         // generate random location and create new teddy bear
@@ -39,5 +36,13 @@ public class LevelAsteroid1 : MonoBehaviour
         Vector3 worldLocation = Camera.main.ScreenToWorldPoint(location);
         GameObject teddyBear = Instantiate(prefabAsteroid) as GameObject;
         teddyBear.transform.position = worldLocation;
+    }
+    void Update()
+    {
+        if(GameObject.FindGameObjectsWithTag("Asteroid").Length == 0) Invoke("LoadLevel", 2);;
+    }
+
+    void LoadLevel(){
+        GameManager.Instance.LoadLevel(nextLevelName);
     }
 }

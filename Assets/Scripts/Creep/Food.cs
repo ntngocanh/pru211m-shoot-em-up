@@ -7,6 +7,7 @@ public class Food : MonoBehaviour
     float colliderHalfWidth;
     float colliderHalfHeight;
     // Start is called before the first frame update
+    int point = 10;
     void Start()
     {
         float angle = Random.Range(0, 2 * Mathf.PI);
@@ -30,6 +31,7 @@ public class Food : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            GameManager.Instance.AddPoints(point);
             Destroy(gameObject);
         }
     }

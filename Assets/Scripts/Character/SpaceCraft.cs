@@ -88,11 +88,6 @@ public class SpaceCraft : MonoBehaviour
         print(healthPoint);
 
     }
-    public static void HandlePointsAddedEvent(int points)
-    {
-        score += points;
-        //print("player: " + score);
-    }
     // Update is called once per frame
     void Update()
     {
@@ -268,7 +263,6 @@ public class SpaceCraft : MonoBehaviour
                 Debug.Log(levelGun);
                 break;
             case "Food":
-                GameManager.Instance.AddPoints(5);
                 audioSource.PlayOneShot(eatingDrumStick);
                 break;
         }
@@ -284,9 +278,7 @@ public class SpaceCraft : MonoBehaviour
     void TakeDamage(int damage)
     {
         GameManager.Instance.TakeDamage(damage);
-        print("Game manager lives: "+ GameManager.lives);
         healthPoint -= damage;
-        print("Spacecraft lives: "+ healthPoint);
         GameObject die = Instantiate(prefabExplosion, transform.position, Quaternion.identity) as GameObject;
         Destroy(die, 1.2f);
         // check for game over

@@ -16,11 +16,11 @@ public class Asteroid : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        if (coll.gameObject.CompareTag("Bullet")) Destroy(coll.gameObject);
         if (coll.gameObject.CompareTag("Bullet") && !hasEntered)
         {
             print("Bullet hit");
             //AudioManager.Play(AudioClipName.AsteroidHit);
-            Destroy(coll.gameObject);
 
             // destroy or split as appropriate
             if (transform.localScale.x < 0.8f)
