@@ -34,6 +34,7 @@ public static class MenuManager
             case MenuName.Main:
 
                 // go to MainMenu scene
+                GameManager.Instance.Reset();
                 SceneManager.LoadScene("StartScene");
                 break;
             case MenuName.Pause:

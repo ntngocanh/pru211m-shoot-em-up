@@ -271,6 +271,7 @@ public class SpaceCraft : MonoBehaviour
     // game over
     void GameOver()
     {
+        Destroy(gameObject);
         LevelManager.GameOver();
     }
 
