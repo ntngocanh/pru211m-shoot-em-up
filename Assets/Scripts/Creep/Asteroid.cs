@@ -6,6 +6,7 @@ public class Asteroid : MonoBehaviour
 {
     int points;
     int healthPoints;
+    bool hasEntered;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class Asteroid : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.CompareTag("Bullet"))
+        if (coll.gameObject.CompareTag("Bullet") && !hasEntered)
         {
             print("Bullet hit");
             //AudioManager.Play(AudioClipName.AsteroidHit);
@@ -49,6 +50,7 @@ public class Asteroid : MonoBehaviour
                     Random.Range(0, 2 * Mathf.PI));
                 Destroy(gameObject);
             }
+            hasEntered = true;
         }
     }
 
@@ -81,6 +83,10 @@ public class Asteroid : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(
             moveDirection * magnitude,
             ForceMode2D.Impulse);
+    }
+
+    void OnBecameInvisible(){
+        Destroy(gameObject);
     }
 
 }

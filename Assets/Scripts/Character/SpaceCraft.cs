@@ -156,7 +156,7 @@ public class SpaceCraft : MonoBehaviour
             default:
                 break;
         }
-        if (levelGun >= 6) levelGun = 6;
+        if (levelGun >= 3) levelGun = 3;
         if (bullet != LaserCanon)
         {
             switch (levelGun)
