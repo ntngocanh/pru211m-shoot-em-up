@@ -107,6 +107,7 @@ MonoBehaviour:
   IonBlasterAudio: {fileID: 8300000, guid: 731ebf0f8a56a9f4489d5c4068d559f1, type: 3}
   NeutronGunAudio: {fileID: 8300000, guid: 87abeef7ffe3bf54dacb8b6e62cbe803, type: 3}
   LaserCanonAudio: {fileID: 8300000, guid: 7e8bb927fec5d0843ad2d511ef794098, type: 3}
+  eatingDrumStick: {fileID: 8300000, guid: e6d56790ef280cb4c9f2aba13a642c6e, type: 3}
   audioSource: {fileID: 8920942994178613800}
 --- !u!58 &3802493976355469017
 CircleCollider2D:
