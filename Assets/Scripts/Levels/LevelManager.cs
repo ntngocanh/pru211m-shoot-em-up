@@ -27,9 +27,10 @@ public class LevelManager : MonoBehaviour
 
     public static void GameOver(){
         
+        MenuManager.GoToMenu(MenuName.HighScore);
         Destroy(GameObject.FindGameObjectWithTag("Player"));
 		Destroy(GameObject.FindGameObjectWithTag("HUD"));
-		MenuManager.GoToMenu(MenuName.Main);
+		//MenuManager.GoToMenu(MenuName.Main);
     }
 
 

@@ -24,11 +24,11 @@ public static class MenuManager
             case MenuName.HighScore:
 
                 // deactivate MainMenuCanvas and instantiate prefab
-                GameObject mainMenuCanvas = GameObject.Find("MainMenuCanvas");
-                if (mainMenuCanvas != null)
-                {
-                    mainMenuCanvas.SetActive(false);
-                }
+                // GameObject mainMenuCanvas = GameObject.Find("StartScene");
+                // if (mainMenuCanvas != null)
+                // {
+                //     mainMenuCanvas.SetActive(false);
+                // }
                 Object.Instantiate(Resources.Load("HighScoreMenu"));
                 break;
             case MenuName.Main:
