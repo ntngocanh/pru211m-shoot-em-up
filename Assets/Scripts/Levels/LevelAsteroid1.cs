@@ -39,7 +39,10 @@ public class LevelAsteroid1 : MonoBehaviour
     }
     void Update()
     {
-        if(GameObject.FindGameObjectsWithTag("Asteroid").Length == 0) Invoke("LoadLevel", 2);;
+        if(GameObject.FindGameObjectsWithTag("Asteroid").Length == 0
+            && GameObject.FindGameObjectsWithTag("NeutronGunBox").Length == 0
+            && GameObject.FindGameObjectsWithTag("IonBlasterBox").Length == 0
+            && GameObject.FindGameObjectsWithTag("LaserCannonBox").Length == 0) Invoke("LoadLevel", 2);;
     }
 
     void LoadLevel(){

@@ -9,9 +9,6 @@ public class SpaceCraft : MonoBehaviour
     GameObject prefabExplosion;
 
     [SerializeField]
-    string levelName;
-
-    [SerializeField]
     GameObject bullet;
 
     [SerializeField]
@@ -26,15 +23,6 @@ public class SpaceCraft : MonoBehaviour
     [SerializeField]
     GameObject Missile;
 
-    public AudioClip IonBlasterAudio;
-    public AudioClip NeutronGunAudio;
-    public AudioClip LaserCanonAudio;
-
-    public AudioClip eatingDrumStick;
-
-    public AudioSource audioSource;
-
-    private Rigidbody2D myRigidBody;
     // saved for efficiency
     float colliderHalfWidth;
     float colliderHalfHeight;
@@ -77,7 +65,6 @@ public class SpaceCraft : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         colliderHalfWidth = gameObject.GetComponent<CircleCollider2D>().radius;
         colliderHalfHeight = gameObject.GetComponent<CircleCollider2D>().radius;
-
     }
 
 
@@ -137,6 +124,10 @@ public class SpaceCraft : MonoBehaviour
         }
     }
 
+    public void fireMissile(){
+        GameObject missileClone = Instantiate(Missile, transform.position, Quaternion.identity) as GameObject;
+    }
+
     // Shooting function
     void Shoot(int numberOfBullet, float spread)
     {
@@ -159,13 +150,13 @@ public class SpaceCraft : MonoBehaviour
         switch (gunType)
         {
             case "LaserCannonCI2Weak":
-                audioSource.PlayOneShot(LaserCanonAudio);
+                AudioManager.Play(AudioClipName.LaserCannon);
                 break;
             case "IonBlasterSingle":
-                audioSource.PlayOneShot(IonBlasterAudio);
+                AudioManager.Play(AudioClipName.IonBlaster);
                 break;
             case "NeutronGunCI2Medium":
-                audioSource.PlayOneShot(NeutronGunAudio);
+                AudioManager.Play(AudioClipName.NeutronGun);
                 break;
             default:
                 break;
@@ -277,7 +268,7 @@ public class SpaceCraft : MonoBehaviour
                 Debug.Log(levelGun);
                 break;
             case "Food":
-                audioSource.PlayOneShot(eatingDrumStick);
+                AudioManager.Play(AudioClipName.EatDrumStick);
                 break;
         }
     }

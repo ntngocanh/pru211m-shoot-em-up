@@ -5,5 +5,9 @@ public enum AudioClipName
 {
     AsteroidHit,
     PlayerDeath,
-    PlayerShot
+    PlayerShot, 
+    IonBlaster, 
+    NeutronGun,
+    LaserCannon,
+    EatDrumStick
 }

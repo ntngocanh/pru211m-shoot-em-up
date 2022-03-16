@@ -17,13 +17,6 @@ public class LevelManager : MonoBehaviour
         
     }
 
-    public static void LoadLevel(string levelName){
-        GameHUD hud = GameHUD.instance;
-        if(hud != null){
-            hud.GetCoroutine();
-        }
-        SceneManager.LoadScene(levelName);
-    }
 
     public static void GameOver(){
         

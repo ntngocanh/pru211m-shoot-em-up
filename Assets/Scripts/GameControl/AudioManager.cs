@@ -18,12 +18,21 @@ public static class AudioManager
     public static void Initialize(AudioSource source)
     {
         audioSource = source;
+        audioClips.Clear();
         audioClips.Add(AudioClipName.AsteroidHit, 
-            Resources.Load<AudioClip>("hit"));
+            Resources.Load<AudioClip>("Sound/hit"));
         audioClips.Add(AudioClipName.PlayerDeath,
-            Resources.Load<AudioClip>("die"));
+            Resources.Load<AudioClip>("Sound/die"));
         audioClips.Add(AudioClipName.PlayerShot,
-            Resources.Load<AudioClip>("shoot"));
+            Resources.Load<AudioClip>("Sound/shoot"));
+        audioClips.Add(AudioClipName.IonBlaster,
+            Resources.Load<AudioClip>("Sound/Ion Blaster"));
+        audioClips.Add(AudioClipName.LaserCannon,
+            Resources.Load<AudioClip>("Sound/Laser Cannon"));
+        audioClips.Add(AudioClipName.EatDrumStick,
+            Resources.Load<AudioClip>("Sound/Eat Drumstick"));
+        audioClips.Add(AudioClipName.NeutronGun,
+            Resources.Load<AudioClip>("Sound/Neutron Gun"));
     }
 
     /// <summary>

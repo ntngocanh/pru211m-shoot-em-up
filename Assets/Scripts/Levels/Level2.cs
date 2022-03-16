@@ -69,7 +69,7 @@ public class Level2 : MonoBehaviour
 
     void SpawnCreep(Vector2 spawnPoint, Vector2 target1, Vector2 target2){
         GameObject spawned = Instantiate(prefabFatBird, spawnPoint, Quaternion.identity);
-        spawned.transform.localScale = newScale;
+        //spawned.transform.localScale = newScale;
         FatBirdCreep script = spawned.GetComponent<FatBirdCreep>();
         script.target1 = target1;
         script.target2 = target2;
@@ -78,6 +78,11 @@ public class Level2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0) GameManager.Instance.LoadLevel(nextLevelName);
+        if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0
+            && GameObject.FindGameObjectsWithTag("Food").Length == 0
+            && GameObject.FindGameObjectsWithTag("Egg").Length == 0
+            && GameObject.FindGameObjectsWithTag("NeutronGunBox").Length == 0
+            && GameObject.FindGameObjectsWithTag("IonBlasterBox").Length == 0
+            && GameObject.FindGameObjectsWithTag("LaserCannonBox").Length == 0) GameManager.Instance.LoadLevel(nextLevelName);
     }
 }

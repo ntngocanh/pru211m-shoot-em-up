@@ -74,14 +74,11 @@ public class GameHUD : MonoBehaviour
         }
     }
 
-    public void GetCoroutine(){
-        StartCoroutine(ShowMessage("Abc", 2));
+    public void FireMissileButton(){
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        SpaceCraft script = player.GetComponent<SpaceCraft>();
+        script.fireMissile();
     }
-    IEnumerator ShowMessage(string message, float delay)
-    {
-        levelText.text = message;
-        levelText.enabled = true;
-        yield return new WaitForSeconds(delay);
-        levelText.enabled = false;
-    }
+
+
 }

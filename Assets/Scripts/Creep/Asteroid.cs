@@ -19,7 +19,7 @@ public class Asteroid : MonoBehaviour
         if (coll.gameObject.CompareTag("Bullet")) Destroy(coll.gameObject);
         if (coll.gameObject.CompareTag("Bullet") && !hasEntered)
         {
-            print("Bullet hit");
+            //print("Bullet hit");
             //AudioManager.Play(AudioClipName.AsteroidHit);
 
             // destroy or split as appropriate

@@ -41,7 +41,6 @@ public static class MenuManager
 
                 // instantiate prefab
                 Object.Instantiate(Resources.Load("PauseMenu"));
-                Debug.Log("Pause menu instantiated");
                 break;
         }
 	}

@@ -40,7 +40,7 @@ public class Level1 : MonoBehaviour
                 GameObject spawned = Instantiate(prefabFatBird, currentPosition,
                     Quaternion.identity);
                 Vector3 newScale = new Vector3(transformScale, transformScale, transformScale);
-                spawned.transform.localScale = newScale;
+                //spawned.transform.localScale = newScale;
                 currentPosition.x += creepWidth*1.5f;
             }
 
@@ -53,7 +53,13 @@ public class Level1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0) Invoke("LoadLevel", 2);;
+        if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0
+            && GameObject.FindGameObjectsWithTag("Food").Length == 0
+            && GameObject.FindGameObjectsWithTag("Egg").Length == 0
+            && GameObject.FindGameObjectsWithTag("NeutronGunBox").Length == 0
+            && GameObject.FindGameObjectsWithTag("IonBlasterBox").Length == 0
+            && GameObject.FindGameObjectsWithTag("LaserCannonBox").Length == 0) 
+            Invoke("LoadLevel", 2);
     }
 
     void LoadLevel(){
