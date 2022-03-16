@@ -18,7 +18,7 @@ public class Missile : MonoBehaviour
     void Update()
     {
         print(transform.position.y);
-        if (Mathf.Abs(transform.position.y) < 0.01)
+        if (Mathf.Abs(transform.position.y) < 0.1 || Mathf.Abs(transform.position.x) < 0.01)
         {
             Destroy(gameObject);
         }

@@ -104,6 +104,7 @@ MonoBehaviour:
   IonBlaster: {fileID: 300113317695871732, guid: edf84754e76c9584299de8c3e7784e30, type: 3}
   NeutronGun: {fileID: 3677742173962327622, guid: 38824cfb1486b51469b875fa4bb65f55, type: 3}
   LaserCanon: {fileID: 4674458124456743827, guid: 94889026be610ae4c8f87cd245e67f53, type: 3}
+  Missile: {fileID: 5613207240627315958, guid: 9ce815b61dfd2df429b3aad8e265caa9, type: 3}
   IonBlasterAudio: {fileID: 8300000, guid: 731ebf0f8a56a9f4489d5c4068d559f1, type: 3}
   NeutronGunAudio: {fileID: 8300000, guid: 87abeef7ffe3bf54dacb8b6e62cbe803, type: 3}
   LaserCanonAudio: {fileID: 8300000, guid: 7e8bb927fec5d0843ad2d511ef794098, type: 3}
