@@ -23,7 +23,7 @@ public class Asteroid : MonoBehaviour
             //AudioManager.Play(AudioClipName.AsteroidHit);
 
             // destroy or split as appropriate
-            if (transform.localScale.x < 0.8f)
+            if (transform.localScale.x < 0.7f)
             {
                 Destroy(gameObject);
             }

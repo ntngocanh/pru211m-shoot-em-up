@@ -32,6 +32,7 @@ public class Food : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameManager.Instance.AddPoints(point);
+            GameManager.Instance.AddFood();
             Destroy(gameObject);
         }
     }

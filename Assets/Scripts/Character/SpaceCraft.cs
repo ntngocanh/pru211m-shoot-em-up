@@ -112,20 +112,21 @@ public class SpaceCraft : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            if(missile > 0)
-            {
-                GameObject missileClone = Instantiate(Missile, transform.position, Quaternion.identity) as GameObject;
-                missile--;
-            }
+            fireMissile();
         }
-        if(score%20 == 0)
+        if (score % 20 == 0)
         {
             missile++;
         }
     }
 
-    public void fireMissile(){
-        GameObject missileClone = Instantiate(Missile, transform.position, Quaternion.identity) as GameObject;
+    public void fireMissile()
+    {
+        if (GameManager.MissileCount > 0)
+        {
+            GameObject missileClone = Instantiate(Missile, transform.position, Quaternion.identity) as GameObject;
+            GameManager.MissileCount = GameManager.MissileCount -1;
+        }
     }
 
     // Shooting function

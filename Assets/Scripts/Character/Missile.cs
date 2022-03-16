@@ -33,7 +33,7 @@ public class Missile : MonoBehaviour
             AudioSource.PlayClipAtPoint(audioSource.clip, point.transform.position);
             GameObject explosionCLone = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
             explosionCLone.transform.localScale += new Vector3(4, 2, -1);
-            Destroy(explosionCLone, 3f);
+            Destroy(explosionCLone, 2f);
 
             FatBirdCreep[] creeps = GameObject.FindObjectsOfType(typeof(FatBirdCreep)) as FatBirdCreep[];
 

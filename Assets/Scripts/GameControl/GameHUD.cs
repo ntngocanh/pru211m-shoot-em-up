@@ -10,7 +10,10 @@ public class GameHUD : MonoBehaviour
     public Text scoreText;
     [SerializeField]
     public Text levelText;
-    public int score = 0;
+    [SerializeField]
+    public Text foodText;
+    [SerializeField]
+    public Text missileText;
     public static GameHUD instance = null;
 
     //Awake is always called before any Start functions
@@ -33,28 +36,18 @@ public class GameHUD : MonoBehaviour
     }
     void Start()
     {
-        // scoreText.transform.SetParent(this.transform);
-        // scoreText = gameObject.AddComponent<Text>();
-        // scoreText.transform.position = new Vector3(-300, 200, 0);
-        // add listener for PointsAddedEvent
-        //EventManager.AddListener(EventName.PointsAddedEvent, HandlePointsAddedEvent);
-
-        // initialize score text
-        scoreText.text = "Score: " + score;
+        
     }
 
     void Update()
     {
-        scoreText.text = "Score: " + GameManager.score;
+        updateUI();
         CheckLivesChanged();
     }
-    /// <summary>
-	/// Gets the score
-	/// </summary>
-	/// <value>the score</value>
-	public int Score
-    {
-        get { return score; }
+    void updateUI(){
+        scoreText.text = "Score: " + GameManager.Score;
+        foodText.text = GameManager.FoodCount.ToString();
+        missileText.text = GameManager.MissileCount.ToString();
     }
     /// <summary>
 	/// Handles the points added event by updating the displayed score
@@ -68,9 +61,9 @@ public class GameHUD : MonoBehaviour
 
     public void CheckLivesChanged()
     {
-        if (GameManager.lives < hearts.Length)
+        if (GameManager.Lives < hearts.Length)
         {
-            Destroy(hearts[GameManager.lives].gameObject);
+            Destroy(hearts[GameManager.Lives].gameObject);
         }
     }
 
