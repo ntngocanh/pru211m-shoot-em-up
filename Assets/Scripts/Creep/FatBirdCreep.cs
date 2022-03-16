@@ -17,6 +17,7 @@ public class FatBirdCreep : Creep
         Health = 1;
     }
 
+
     public Vector2 target1;
     public Vector2 target2;
     bool arrived1;
@@ -54,14 +55,7 @@ public class FatBirdCreep : Creep
     {
         if (coll.gameObject.CompareTag("Bullet") || coll.gameObject.CompareTag("Player"))
         {
-            health--;
-            if (health <= 0)
-            {
-                Destroy(gameObject);
-                GameObject die = Instantiate(diePrefab, transform.position, Quaternion.identity) as GameObject;
-                Destroy(die, 0.3f);
-                DropItem();
-            }
+            TakeDamage();
         }
     }
     public override void DropItem()
@@ -105,6 +99,17 @@ public class FatBirdCreep : Creep
         {
             health--;
             if (health <= 0) Destroy(gameObject);
+            DropItem();
+        }
+    }
+    public void TakeDamage()
+    {
+        health--;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            GameObject die = Instantiate(diePrefab, transform.position, Quaternion.identity) as GameObject;
+            Destroy(die, 0.3f);
             DropItem();
         }
     }

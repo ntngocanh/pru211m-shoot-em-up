@@ -23,6 +23,9 @@ public class SpaceCraft : MonoBehaviour
     [SerializeField]
     GameObject LaserCanon;
 
+    [SerializeField]
+    GameObject Missile;
+
     public AudioClip IonBlasterAudio;
     public AudioClip NeutronGunAudio;
     public AudioClip LaserCanonAudio;
@@ -51,6 +54,8 @@ public class SpaceCraft : MonoBehaviour
     const float MoveUnitsPerSecond = 10;
     public static SpaceCraft instance = null;
     public static int score = 0;
+    //number of missile
+    int missile = 5;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -117,6 +122,18 @@ public class SpaceCraft : MonoBehaviour
         {
             ShootSingleBullet();
             canfire = Time.time + 0.5;
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            if(missile > 0)
+            {
+                GameObject missileClone = Instantiate(Missile, transform.position, Quaternion.identity) as GameObject;
+                missile--;
+            }
+        }
+        if(score%20 == 0)
+        {
+            missile++;
         }
     }
 
