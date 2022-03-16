@@ -7,6 +7,7 @@ public class Missile : MonoBehaviour
 
     public float moveSpeed = 3f;
     public AudioSource audioSource;
+    public GameObject explosion;
 
     private GameObject point;
     void Start()
@@ -29,7 +30,9 @@ public class Missile : MonoBehaviour
         {
             Destroy(gameObject);
             AudioSource.PlayClipAtPoint(audioSource.clip, point.transform.position);
-
+            GameObject explosionCLone = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+            explosionCLone.transform.localScale += new Vector3(6, 3, 5);
+            Destroy(explosionCLone, 3f);
         }
     }
 
