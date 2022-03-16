@@ -15,10 +15,11 @@ public class Missile : MonoBehaviour
         point = new GameObject();
         Vector3 vector = new Vector3(0, 0, 0);
         point.transform.position = vector;
+        DontDestroyOnLoad(gameObject);
     }
     void Update()
     {
-        print(transform.position.y);
+        //print(transform.position.y);
         //Vector3 direction = point.transform.position - gameObject.transform.position;
         //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         //rb.rotation = angle;
