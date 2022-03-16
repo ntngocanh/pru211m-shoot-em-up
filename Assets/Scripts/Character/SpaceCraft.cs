@@ -131,6 +131,10 @@ public class SpaceCraft : MonoBehaviour
                 missile--;
             }
         }
+        if(score%20 == 0)
+        {
+            missile++;
+        }
     }
 
     // Shooting function
