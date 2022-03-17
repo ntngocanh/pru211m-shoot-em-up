@@ -86,7 +86,11 @@ public class SpaceCraft : MonoBehaviour
         // check for pausing game
         if (Input.GetKeyDown("escape"))
         {
-            MenuManager.GoToMenu(MenuName.Pause);
+            if(!GameManager.isPaused)
+                {
+                    MenuManager.GoToMenu(MenuName.Pause);
+                    GameManager.isPaused = true;
+                }
         }
         // Die if healt point below 1
         if (healthPoint <= 0)

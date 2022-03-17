@@ -1,0 +1,18 @@
+{
+    "levels" : [
+    {
+        "1" :{
+            "creepName": "FatBirdCreep",
+            "row" : 1,
+            "column" : 1,
+            "creepPerRow" : 8,
+            "scale" : 1, 
+            "health" : 1,
+            "pointHit" : 25, 
+            "pointDie" : 50,
+            "secondsPerEgg": 3,
+            "eggForce" : 4
+        }
+    }
+]
+}

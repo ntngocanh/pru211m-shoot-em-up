@@ -26,6 +26,7 @@ public class PauseMenu : MonoBehaviour
     {
 		// unpause game and destroy menu
 		Time.timeScale = 1;
+		GameManager.isPaused = false;
 		Destroy(gameObject);
 	}
 
@@ -34,11 +35,14 @@ public class PauseMenu : MonoBehaviour
 	/// </summary>
 	public void HandleQuitButtonOnClickEvent()
     {
+		if(!GameManager.isPaused){
+			
 		// unpause game, destroy menu, and go to main menu
 		Time.timeScale = 1;
 		Destroy(gameObject);
         Destroy(GameObject.FindGameObjectWithTag("Player"));
 		Destroy(GameObject.FindGameObjectWithTag("HUD"));
 		MenuManager.GoToMenu(MenuName.Main);
+		}
 	}
 }

@@ -11,11 +11,6 @@ public class FatBirdCreep : Creep
     public GameObject gift3;
     public GameObject diePrefab;
     public GameObject powerup;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Health = 1;
-    }
 
 
     public Vector2 target1;
@@ -24,6 +19,13 @@ public class FatBirdCreep : Creep
     bool arrived2;
     public bool fly;
     float speed = 9;
+    // Start is called before the first frame update
+    void Start()
+    {
+        Health = 1;
+        PointHit = 20;
+        PointDie = 50;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -60,7 +62,7 @@ public class FatBirdCreep : Creep
     }
     public override void DropItem()
     {
-        if (Random.Range(0f, 3f) < 1)
+        if (Random.Range(0f, 5f) > 1)
         {
             GameObject foodClone = Instantiate(food, transform.position, Quaternion.identity) as GameObject;
         }
@@ -97,19 +99,19 @@ public class FatBirdCreep : Creep
     {
         if (coll.gameObject.CompareTag("Bullet"))
         {
-            health--;
-            if (health <= 0) Destroy(gameObject);
-            DropItem();
+            TakeDamage();
         }
     }
     public void TakeDamage()
     {
         health--;
+        GameManager.Instance.AddPoints(pointHit);
         if (health <= 0)
         {
+            GameManager.Instance.AddPoints(pointDie);
             Destroy(gameObject);
             GameObject die = Instantiate(diePrefab, transform.position, Quaternion.identity) as GameObject;
-            Destroy(die, 0.3f);
+            Destroy(die, 0.15f);
             DropItem();
         }
     }

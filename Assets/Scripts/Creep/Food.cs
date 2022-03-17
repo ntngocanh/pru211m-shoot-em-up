@@ -26,6 +26,7 @@ public class Food : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        gameObject.transform.Rotate(new Vector3(0,0, 1)); //applying rotation
     }
     void OnCollisionEnter2D(Collision2D collision)
     {

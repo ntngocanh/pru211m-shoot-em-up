@@ -9,7 +9,8 @@ public class GameManager{
     private static int score = 0;
     private static int lives = 5;
     private static int foodCount = 0;
-    private static int missleCount = 0;
+    private static int missileCount = 0;
+    public static bool isPaused = false;
     private GameManager() {
         // initialize your game manager here. Do not reference to GameObjects here (i.e. GameObject.Find etc.)
         // because the game manager will be created before the objects
@@ -31,8 +32,8 @@ public class GameManager{
 	}
     public static int MissileCount
     {
-		get { return missleCount; }
-        set {missleCount = value;}
+		get { return missileCount; }
+        set {missileCount = value;}
 	}
     public static GameManager Instance {
         get {
@@ -55,13 +56,13 @@ public class GameManager{
     public void AddFood(){
         foodCount++;
         if(foodCount >= 25){
-            missleCount+=1;
+            missileCount+=1;
             foodCount-=25;
         }
     }
     public void SubtractMissile(){
-        if(missleCount > 0)
-            missleCount -=1;
+        if(missileCount > 0)
+            missileCount -=1;
     }
     public void TakeDamage(int damage){
         lives -= damage;
@@ -71,7 +72,8 @@ public class GameManager{
         score = 0;
         lives = 5;
         foodCount = 0;
-        missleCount = 0;
+        missileCount = 0;
+        isPaused = false;
     }
     public void LoadLevel(string levelName){
         SceneManager.LoadScene(levelName);

@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class Creep : MonoBehaviour
 {
+    
+    protected int pointHit = 0;
+    protected int pointDie = 0;
     protected int health;
     protected int Health{
         set{
             health = value;
+        }
+    }
+    protected int PointHit{
+        set{
+            pointHit = value;
+        }
+    }
+    protected int PointDie{
+        set{
+            pointDie = value;
         }
     }
     // Start is called before the first frame update
