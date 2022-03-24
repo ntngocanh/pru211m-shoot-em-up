@@ -41,6 +41,13 @@ public class Missile : MonoBehaviour
             {
                 i.TakeDamage();
             }
+
+            Asteroid[] asteroids = GameObject.FindObjectsOfType(typeof(Asteroid)) as Asteroid[];
+
+            foreach (Asteroid i in asteroids)
+            {
+                i.TakeDamage();
+            }
         }
     }
 
