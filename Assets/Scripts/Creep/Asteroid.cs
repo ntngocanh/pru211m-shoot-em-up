@@ -53,7 +53,44 @@ public class Asteroid : MonoBehaviour
             hasEntered = true;
         }
     }
+    public void TakeDamage()
+    {
+        if (!hasEntered)
+        {
+            //print("Bullet hit");
+            //AudioManager.Play(AudioClipName.AsteroidHit);
 
+            // destroy or split as appropriate
+            if (transform.localScale.x < 0.7f)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                // shrink asteroid to half size
+                Vector3 scale = transform.localScale;
+                scale.x /= 2;
+                scale.y /= 2;
+                transform.localScale = scale;
+
+                // cut collider radius in half
+                CircleCollider2D collider = GetComponent<CircleCollider2D>();
+                collider.radius /= 2;
+
+                // clone twice and destroy original
+                GameObject newAsteroid = Instantiate<GameObject>(gameObject,
+                                         transform.position, Quaternion.identity);
+                newAsteroid.GetComponent<Asteroid>().StartMoving(
+                    Random.Range(0, 2 * Mathf.PI));
+                GameObject newAsteroid2 = Instantiate<GameObject>(gameObject,
+                    transform.position, Quaternion.identity);
+                newAsteroid2.GetComponent<Asteroid>().StartMoving(
+                    Random.Range(0, 2 * Mathf.PI));
+                Destroy(gameObject);
+            }
+            hasEntered = true;
+        }
+    }
     public void ApplyForce(Vector2 forceDirection){
         const float forceMagnitude = 5;
         GetComponent<Rigidbody2D>().AddForce(
