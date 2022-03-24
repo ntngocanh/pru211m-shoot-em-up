@@ -118,10 +118,6 @@ public class SpaceCraft : MonoBehaviour
         {
             fireMissile();
         }
-        if (score % 20 == 0)
-        {
-            missile++;
-        }
     }
 
     public void fireMissile()
