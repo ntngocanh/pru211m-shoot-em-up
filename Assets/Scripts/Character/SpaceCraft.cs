@@ -192,16 +192,16 @@ public class SpaceCraft : MonoBehaviour
             switch (levelGun)
             {
                 case 1:
-                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 5f, Quaternion.identity);
                     break;
                 case 2:
-                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f + Vector3.up * 4.5f, Quaternion.identity);
-                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f + Vector3.up * 4.8f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f + Vector3.up * 4.8f, Quaternion.identity);
                     break;
                 case 3:
-                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f + Vector3.up * 4.5f, Quaternion.identity);
-                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f + Vector3.up * 4.5f, Quaternion.identity);
-                    bulletShooted3 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f + Vector3.up * 4.8f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f + Vector3.up * 4.8f, Quaternion.identity);
+                    bulletShooted3 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.8f, Quaternion.identity);
                     break;
                 default:
                     break;
