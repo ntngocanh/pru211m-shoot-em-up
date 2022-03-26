@@ -298,5 +298,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f5db0de5a41614890ae349531dc5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelName: Level1
+  nextLevelName: Level3
   prefabAsteroid: {fileID: 6233958949589347032, guid: fc865ef3aa47a7949a7f23f56b7a3384, type: 3}

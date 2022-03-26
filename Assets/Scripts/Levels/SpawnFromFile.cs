@@ -13,23 +13,37 @@ public class SpawnFromFile : MonoBehaviour
     public string levelName;
     public string nextLevelName;
     Vector3 newScale;
+    bool hasSpawned;
     private Dictionary<string, Spawner> dictionary;
     // Start is called before the first frame update
     void Start()
     {
+        hasSpawned = false;
         ReadFromJson(levelName);
         SpawnMultiple();
+        hasSpawned = true;
     }
 
     void ReadFromJson(string levelName)
     {
-        using (StreamReader r = new StreamReader("Assets/Resources/spawninginfo.json"))
-        {
-            string json = r.ReadToEnd();
-            dictionary = JsonConvert.DeserializeObject<Dictionary<string, Spawner>>(json);
-            print(dictionary[levelName].creepName);
-            spawner = dictionary[levelName];
-        }
+        // string jsonFileName = "Assets/Resources/spawninginfo.json";
+        // string jsonFilePath = Path.Combine(Application.streamingAssetsPath, jsonFileName);
+        // WWW reader = new WWW(jsonFilePath);
+        // while (!reader.isDone) { } // Do nothing
+        // string dataString = reader.text;
+        TextAsset file = Resources.Load("spawninginfo") as TextAsset;
+        string content = file.text;
+        dictionary = JsonConvert.DeserializeObject<Dictionary<string, Spawner>>(content);
+        print(dictionary[levelName].creepName);
+        spawner = dictionary[levelName];
+        //string path = "jar:file://" + Application.persistentDataPath + "!/Assets/Resources/spawninginfo.json";
+        // using (StreamReader r = new StreamReader(path))
+        // {
+        //     string json = r.ReadToEnd();
+        //     dictionary = JsonConvert.DeserializeObject<Dictionary<string, Spawner>>(json);
+        //     print(dictionary[levelName].creepName);
+        //     spawner = dictionary[levelName];
+        // }
     }
 
     void SpawnMultiple()
@@ -156,14 +170,15 @@ public class SpawnFromFile : MonoBehaviour
 
     void Update()
     {
-        if (GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0
-            && GameObject.FindGameObjectsWithTag("Creep").Length == 0
-            && GameObject.FindGameObjectsWithTag("Food").Length == 0
-            && GameObject.FindGameObjectsWithTag("Egg").Length == 0
-            && GameObject.FindGameObjectsWithTag("NeutronGunBox").Length == 0
-            && GameObject.FindGameObjectsWithTag("IonBlasterBox").Length == 0
-            && GameObject.FindGameObjectsWithTag("LaserCannonBox").Length == 0)
-            Invoke("LoadLevel", 1);
+        // if (GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0
+        //     && GameObject.FindGameObjectsWithTag("Creep").Length == 0
+        //     && GameObject.FindGameObjectsWithTag("Food").Length == 0
+        //     && GameObject.FindGameObjectsWithTag("Egg").Length == 0
+        //     && GameObject.FindGameObjectsWithTag("NeutronGunBox").Length == 0
+        //     && GameObject.FindGameObjectsWithTag("IonBlasterBox").Length == 0
+        //     && GameObject.FindGameObjectsWithTag("LaserCannonBox").Length == 0
+        //     && hasSpawned);
+        //     Invoke("LoadLevel", 1);
     }
 
     void LoadLevel()

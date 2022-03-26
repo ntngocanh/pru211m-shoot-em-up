@@ -31,7 +31,7 @@ public class SpaceCraft : MonoBehaviour
     int healthPoint = 5;
 
     // Fire support
-    double canfire = 0.2;
+    double canfire = 0.1;
     int levelGun = 2;
     GameObject bulletShooted1;
     GameObject bulletShooted2;
@@ -108,7 +108,7 @@ public class SpaceCraft : MonoBehaviour
         if (Input.GetButton("Fire1") && (Time.time > canfire))
         {
             ShootSingleBullet();
-            canfire = Time.time + 0.5;
+            canfire = Time.time + 0.3;
         }
         if (Input.GetMouseButtonDown(1))
         {

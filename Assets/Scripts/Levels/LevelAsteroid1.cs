@@ -45,6 +45,6 @@ public class LevelAsteroid1 : MonoBehaviour
     }
 
     void LoadLevel(){
-        GameManager.Instance.LoadLevel("Level3");
+        GameManager.Instance.LoadLevel(nextLevelName);
     }
 }
