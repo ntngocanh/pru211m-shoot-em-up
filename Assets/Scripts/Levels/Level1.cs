@@ -71,6 +71,6 @@ public class Level1 : MonoBehaviour
 
     void LoadLevel()
     {
-        GameManager.Instance.LoadLevel(nextLevelName);
+        GameManager.Instance.LoadLevel("Level3");
     }
 }

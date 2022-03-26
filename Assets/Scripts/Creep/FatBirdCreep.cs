@@ -117,7 +117,7 @@ public class FatBirdCreep : Creep
             GameManager.Instance.AddPoints(pointDie);
             Destroy(gameObject);
             GameObject die = Instantiate(diePrefab, transform.position, Quaternion.identity) as GameObject;
-            Destroy(die, 0.15f);
+            Destroy(die, 0.2f);
             DropItem();
         }
     }
