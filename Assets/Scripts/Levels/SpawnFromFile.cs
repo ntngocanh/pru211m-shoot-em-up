@@ -4,12 +4,13 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
 
-public class Level3 : MonoBehaviour
+public class SpawnFromFile : MonoBehaviour
 {
     Spawner spawner;
     public GameObject prefabFatBird;
     public GameObject prefabBat;
     public string levelName;
+    public string nextLevelName;
     Vector3 newScale;
     private Dictionary<string, Spawner> dictionary;
     // Start is called before the first frame update
@@ -19,11 +20,6 @@ public class Level3 : MonoBehaviour
         SpawnMultiple();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     void ReadFromJson(string levelName)
     {
         using (StreamReader r = new StreamReader("Assets/Resources/spawninginfo.json"))
@@ -100,7 +96,7 @@ public class Level3 : MonoBehaviour
         if (spawner.creepName.Equals("FatBirdCreep"))
         {
             GameObject spawned = Instantiate(prefabFatBird, spawnPoint, Quaternion.identity);
-            //spawned.transform.localScale = newScale;
+            spawned.transform.localScale *= spawner.scale;
             FatBirdCreep script = spawned.GetComponent<FatBirdCreep>();
             script.Health = spawner.health;
             script.PointHit = spawner.pointHit;
@@ -114,7 +110,7 @@ public class Level3 : MonoBehaviour
         }
         else if(spawner.creepName.Equals("BatCreep")){
             GameObject spawned = Instantiate(prefabBat, spawnPoint, Quaternion.identity);
-            //spawned.transform.localScale = newScale;
+            spawned.transform.localScale *= spawner.scale;
             BatCreep script = spawned.GetComponent<BatCreep>();
             script.Health = spawner.health;
             script.PointHit = spawner.pointHit;
@@ -126,6 +122,37 @@ public class Level3 : MonoBehaviour
             script.EggForce = spawner.eggForce;
             script.fly = true;
         }
+        else{
+            GameObject spawned = Instantiate(prefabFatBird, spawnPoint, Quaternion.identity);
+            spawned.transform.localScale *= spawner.scale;
+            FatBirdCreep script = spawned.GetComponent<FatBirdCreep>();
+            script.Health = spawner.health;
+            script.PointHit = spawner.pointHit;
+            script.PointDie = spawner.pointDie;
+            script.target1 = target1;
+            script.target2 = target2;
+            script.MinEggSpawnTime = spawner.minEggSpawnTime;
+            script.MaxEggSpawnTime = spawner.maxEggSpawnTime;
+            script.EggForce = spawner.eggForce;
+            script.fly = true;
+        }
 
+    }
+
+    void Update()
+    {
+        if (GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0
+            && GameObject.FindGameObjectsWithTag("Creep").Length == 0
+            && GameObject.FindGameObjectsWithTag("Food").Length == 0
+            && GameObject.FindGameObjectsWithTag("Egg").Length == 0
+            && GameObject.FindGameObjectsWithTag("NeutronGunBox").Length == 0
+            && GameObject.FindGameObjectsWithTag("IonBlasterBox").Length == 0
+            && GameObject.FindGameObjectsWithTag("LaserCannonBox").Length == 0)
+            Invoke("LoadLevel", 1);
+    }
+
+    void LoadLevel()
+    {
+        GameManager.Instance.LoadLevel(nextLevelName);
     }
 }

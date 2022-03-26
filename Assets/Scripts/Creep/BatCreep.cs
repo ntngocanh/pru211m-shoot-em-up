@@ -119,7 +119,7 @@ public class BatCreep : Creep
             GameObject die = Instantiate(diePrefab, transform.position, Quaternion.identity) as GameObject;
             Destroy(die, 0.15f);
             DropItem();
-            DropFood(4, 5);
+            DropFood(2, 4);
         }else{
             DropFood(1, 2);
         }

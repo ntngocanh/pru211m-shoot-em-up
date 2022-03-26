@@ -1,7 +1,7 @@
  {
     
         "Level3" :{
-            "creepName": "FatBirdCreep",
+            "creepName": "BatCreep",
             "row" : 1,
             "creepPerRow" : 8,
             "scale" : 1, 
@@ -10,7 +10,46 @@
             "pointDie" : 50,
             "minEggSpawnTime":  1,
             "maxEggSpawnTime":3,
-            "eggForce" : 1,
+            "eggForce" : 3,
+            "topRowOffset" : 2
+        },
+        "Level1" :{
+            "creepName": "FatBirdCreep",
+            "row" : 1,
+            "creepPerRow" : 8,
+            "scale" : 1, 
+            "health" : 1,
+            "pointHit" : 20, 
+            "pointDie" : 50,
+            "minEggSpawnTime":  5,
+            "maxEggSpawnTime": 10,
+            "eggForce" : 2,
+            "topRowOffset" : 1
+        },
+        "Level2" :{
+            "creepName": "FatBirdCreep",
+            "row" : 1,
+            "creepPerRow" : 8,
+            "scale" : 1, 
+            "health" : 1,
+            "pointHit" : 25, 
+            "pointDie" : 60,
+            "minEggSpawnTime":  5,
+            "maxEggSpawnTime": 10,
+            "eggForce" : 2,
+            "topRowOffset" : 1
+        },
+        "Level4" :{
+            "creepName": "BatCreep",
+            "row" : 1,
+            "creepPerRow" : 8,
+            "scale" : 1, 
+            "health" : 3,
+            "pointHit" : 25, 
+            "pointDie" : 50,
+            "minEggSpawnTime": 4,
+            "maxEggSpawnTime" : 8,
+            "eggForce" : 4,
             "topRowOffset" : 2
         }
     
