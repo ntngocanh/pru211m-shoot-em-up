@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>() as Rigidbody2D;
         GameObject spacecraft = GameObject.FindGameObjectWithTag("Player");
         GetComponent<Rigidbody2D>().AddForce(spacecraft.transform.up * 10, ForceMode2D.Impulse);
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Setup(Vector2 moveDirection)

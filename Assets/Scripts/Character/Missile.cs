@@ -5,7 +5,7 @@ using UnityEngine;
 public class Missile : MonoBehaviour
 {
 
-    public float moveSpeed = 3f;
+    public float moveSpeed = 5f;
     public AudioSource audioSource;
     public GameObject explosion;
 

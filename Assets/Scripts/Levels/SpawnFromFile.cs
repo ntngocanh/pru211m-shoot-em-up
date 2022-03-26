@@ -49,7 +49,22 @@ public class SpawnFromFile : MonoBehaviour
     void SpawnMultiple()
     {
         // retrieve block size
-        GameObject tempBlock = Instantiate<GameObject>(prefabBat);
+        GameObject tempBlock = new GameObject();
+        switch (spawner.creepName)
+        {
+            case "FatBirdCreep":
+                tempBlock = Instantiate<GameObject>(prefabFatBird);
+                break;
+            case "BatCreep":
+                tempBlock = Instantiate<GameObject>(prefabBat);
+                break;
+            case "BeeCreep":
+                tempBlock = Instantiate<GameObject>(prefabBee);
+                break;
+            default:
+                tempBlock = Instantiate<GameObject>(prefabFatBird);
+                break;
+        }
         BoxCollider2D collider = tempBlock.GetComponent<BoxCollider2D>();
         float blockWidth = collider.size.x;
         float blockHeight = collider.size.y;
@@ -123,7 +138,8 @@ public class SpawnFromFile : MonoBehaviour
             script.EggForce = spawner.eggForce;
             script.fly = true;
         }
-        else if(spawner.creepName.Equals("BatCreep")){
+        else if (spawner.creepName.Equals("BatCreep"))
+        {
             GameObject spawned = Instantiate(prefabBat, spawnPoint, Quaternion.identity);
             spawned.transform.localScale *= spawner.scale;
             BatCreep script = spawned.GetComponent<BatCreep>();
@@ -137,7 +153,8 @@ public class SpawnFromFile : MonoBehaviour
             script.EggForce = spawner.eggForce;
             script.fly = true;
         }
-        else if(spawner.creepName.Equals("BeeCreep")){
+        else if (spawner.creepName.Equals("BeeCreep"))
+        {
             GameObject spawned = Instantiate(prefabBee, spawnPoint, Quaternion.identity);
             spawned.transform.localScale *= spawner.scale;
             BeeCreep script = spawned.GetComponent<BeeCreep>();
@@ -151,7 +168,8 @@ public class SpawnFromFile : MonoBehaviour
             script.EggForce = spawner.eggForce;
             script.fly = true;
         }
-        else{
+        else
+        {
             GameObject spawned = Instantiate(prefabFatBird, spawnPoint, Quaternion.identity);
             spawned.transform.localScale *= spawner.scale;
             FatBirdCreep script = spawned.GetComponent<FatBirdCreep>();
