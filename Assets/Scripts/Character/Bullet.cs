@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         //GameObject gameObject = GameObject.FindGameObjectWithTag("Bullet");
-        if (collision.gameObject.tag == "FatBirdFall")
+        if (collision.gameObject.tag == "FatBirdFall" || collision.gameObject.tag == "Creep")
         {
             GameManager.Instance.AddPoints(5);
             Destroy(gameObject);

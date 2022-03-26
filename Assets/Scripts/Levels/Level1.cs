@@ -17,17 +17,17 @@ public class Level1 : MonoBehaviour
         float blockWidth = collider.size.x;
         float blockHeight = collider.size.y;
         Destroy(tempBlock);
-        
+
         int blocksPerRow = 10;
         // calculate blocks per row and make sure left block position centers row
         float screenWidth = ScreenUtils.ScreenRight - ScreenUtils.ScreenLeft;
         //calculate scale to transform creep and creep size
-        float creepWidth = screenWidth / (1.5f*(blocksPerRow + 1));
-        float transformScale = creepWidth/blockWidth;
+        float creepWidth = screenWidth / (1.5f * (blocksPerRow + 1));
+        float transformScale = creepWidth / blockWidth;
         float creepHeight = blockHeight * transformScale;
 
         float totalBlockWidth = blocksPerRow * blockWidth;
-        float leftBlockOffset = ScreenUtils.ScreenLeft + creepWidth*1.5f;
+        float leftBlockOffset = ScreenUtils.ScreenLeft + creepWidth * 1.5f;
 
         float topRowOffset = ScreenUtils.ScreenTop - creepHeight;
 
@@ -39,9 +39,16 @@ public class Level1 : MonoBehaviour
             {
                 GameObject spawned = Instantiate(prefabFatBird, currentPosition,
                     Quaternion.identity);
+                FatBirdCreep script = spawned.GetComponent<FatBirdCreep>();
+                script.Health = 1;
+                script.PointHit = 20;
+                script.PointDie = 50;
+                script.MinEggSpawnTime = 5;
+                script.MaxEggSpawnTime = 10;
+                script.EggForce = 2f;
                 Vector3 newScale = new Vector3(transformScale, transformScale, transformScale);
                 //spawned.transform.localScale = newScale;
-                currentPosition.x += creepWidth*1.5f;
+                currentPosition.x += creepWidth * 1.5f;
             }
 
             // move to next row
@@ -53,16 +60,17 @@ public class Level1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0
+        if (GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0
             && GameObject.FindGameObjectsWithTag("Food").Length == 0
             && GameObject.FindGameObjectsWithTag("Egg").Length == 0
             && GameObject.FindGameObjectsWithTag("NeutronGunBox").Length == 0
             && GameObject.FindGameObjectsWithTag("IonBlasterBox").Length == 0
-            && GameObject.FindGameObjectsWithTag("LaserCannonBox").Length == 0) 
+            && GameObject.FindGameObjectsWithTag("LaserCannonBox").Length == 0)
             Invoke("LoadLevel", 2);
     }
 
-    void LoadLevel(){
+    void LoadLevel()
+    {
         GameManager.Instance.LoadLevel(nextLevelName);
     }
 }

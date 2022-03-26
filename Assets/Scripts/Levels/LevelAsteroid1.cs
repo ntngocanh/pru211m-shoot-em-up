@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LevelAsteroid1 : MonoBehaviour
 {
-    [SerializeField]
-    string nextLevelName;
+    public string nextLevelName;
     // needed for spawning
     [SerializeField]
     GameObject prefabAsteroid;
@@ -46,6 +45,6 @@ public class LevelAsteroid1 : MonoBehaviour
     }
 
     void LoadLevel(){
-        GameManager.Instance.LoadLevel(nextLevelName);
+        GameManager.Instance.LoadLevel("Level3");
     }
 }

@@ -36,8 +36,12 @@ public class Missile : MonoBehaviour
             Destroy(explosionCLone, 2f);
 
             FatBirdCreep[] creeps = GameObject.FindObjectsOfType(typeof(FatBirdCreep)) as FatBirdCreep[];
-
+            BatCreep[] batcreeps = GameObject.FindObjectsOfType(typeof(BatCreep)) as BatCreep[];
             foreach (FatBirdCreep i in creeps)
+            {
+                i.TakeDamage();
+            }
+            foreach (BatCreep i in batcreeps)
             {
                 i.TakeDamage();
             }

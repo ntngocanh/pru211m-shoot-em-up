@@ -13,6 +13,8 @@ TagManager:
   - NeutronGunBox
   - Asteroid
   - HUD
+  - Food
+  - Creep
   layers:
   - Default
   - TransparentFX

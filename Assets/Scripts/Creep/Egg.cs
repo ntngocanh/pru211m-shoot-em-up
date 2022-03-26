@@ -11,7 +11,7 @@ public class Egg : MonoBehaviour
     void Start()
     {
         Vector2 force = new Vector2(0, -1);
-        GetComponent<Rigidbody2D>().AddForce(force* 4, ForceMode2D.Impulse);
+        //GetComponent<Rigidbody2D>().AddForce(force* 4, ForceMode2D.Impulse);
         //BoxCollider2D collider = GetComponent<BoxCollider2D>();
         //colliderHalfWidth = collider.size.x / 2;
         //colliderHalfHeight = collider.size.y / 2;
@@ -39,6 +39,13 @@ public class Egg : MonoBehaviour
     public void ApplyForce(Vector2 forceDirection)
     {
         const float forceMagnitude = 5;
+        GetComponent<Rigidbody2D>().AddForce(
+            forceMagnitude * forceDirection,
+            ForceMode2D.Impulse
+        );
+    }
+    public void ApplyForce(Vector2 forceDirection, float forceMagnitude)
+    {
         GetComponent<Rigidbody2D>().AddForce(
             forceMagnitude * forceDirection,
             ForceMode2D.Impulse
