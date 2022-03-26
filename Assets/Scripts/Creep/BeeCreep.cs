@@ -119,7 +119,7 @@ public class BeeCreep : Creep
             GameObject die = Instantiate(diePrefab, transform.position, Quaternion.identity) as GameObject;
             Destroy(die, 0.15f);
             DropItem();
-            DropFood(2, 4);
+            DropFood(1, 3);
         }else{
             DropFood(1, 2);
         }

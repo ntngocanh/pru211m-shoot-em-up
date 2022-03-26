@@ -95,8 +95,8 @@ public class SpawnFromFile : MonoBehaviour
                 currentPosition.x = leftBlockOffset;
                 target1.x = rightBlockOffset;
             }
-            spawnPoint.x -= creepWidth * 1.5f * moveToRight;
-            spawnPoint.y += creepHeight * 1.2f;
+            spawnPoint.x -= creepWidth * 1.5f * moveToRight * spawner.scale;
+            spawnPoint.y += creepHeight * 1.2f * spawner.scale;
             for (int column = 0; column < blocksPerRow; column++)
             {
                 SpawnCreep(spawnPoint, target1, currentPosition);
@@ -170,15 +170,15 @@ public class SpawnFromFile : MonoBehaviour
 
     void Update()
     {
-        // if (GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0
-        //     && GameObject.FindGameObjectsWithTag("Creep").Length == 0
-        //     && GameObject.FindGameObjectsWithTag("Food").Length == 0
-        //     && GameObject.FindGameObjectsWithTag("Egg").Length == 0
-        //     && GameObject.FindGameObjectsWithTag("NeutronGunBox").Length == 0
-        //     && GameObject.FindGameObjectsWithTag("IonBlasterBox").Length == 0
-        //     && GameObject.FindGameObjectsWithTag("LaserCannonBox").Length == 0
-        //     && hasSpawned);
-        //     Invoke("LoadLevel", 1);
+        if (GameObject.FindGameObjectsWithTag("FatBirdFall").Length == 0
+            && GameObject.FindGameObjectsWithTag("Creep").Length == 0
+            && GameObject.FindGameObjectsWithTag("Food").Length == 0
+            && GameObject.FindGameObjectsWithTag("Egg").Length == 0
+            && GameObject.FindGameObjectsWithTag("NeutronGunBox").Length == 0
+            && GameObject.FindGameObjectsWithTag("IonBlasterBox").Length == 0
+            && GameObject.FindGameObjectsWithTag("LaserCannonBox").Length == 0
+            && hasSpawned)
+            Invoke("LoadLevel", 1);
     }
 
     void LoadLevel()

@@ -223,7 +223,7 @@ MonoBehaviour:
   prefabBat: {fileID: 7581363222010645139, guid: b52590a9475c6174895ae911f46bf19d, type: 3}
   prefabBee: {fileID: 4350730824528125552, guid: 3218317264bb61444a2cb7bf9c7d0dad, type: 3}
   levelName: Level5
-  nextLevelName: Level1
+  nextLevelName: Level6
 --- !u!1 &1340878477
 GameObject:
   m_ObjectHideFlags: 0
