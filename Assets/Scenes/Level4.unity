@@ -221,8 +221,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabFatBird: {fileID: 8240481103918117198, guid: 12cbcb02bdb6e37438cb52ecb8f103e8, type: 3}
   prefabBat: {fileID: 7581363222010645139, guid: b52590a9475c6174895ae911f46bf19d, type: 3}
+  prefabBee: {fileID: 4350730824528125552, guid: 3218317264bb61444a2cb7bf9c7d0dad, type: 3}
   levelName: Level4
-  nextLevelName: Level1
+  nextLevelName: Level5
 --- !u!1 &1628933065
 GameObject:
   m_ObjectHideFlags: 0

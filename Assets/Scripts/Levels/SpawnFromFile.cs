@@ -9,6 +9,7 @@ public class SpawnFromFile : MonoBehaviour
     Spawner spawner;
     public GameObject prefabFatBird;
     public GameObject prefabBat;
+    public GameObject prefabBee;
     public string levelName;
     public string nextLevelName;
     Vector3 newScale;
@@ -112,6 +113,20 @@ public class SpawnFromFile : MonoBehaviour
             GameObject spawned = Instantiate(prefabBat, spawnPoint, Quaternion.identity);
             spawned.transform.localScale *= spawner.scale;
             BatCreep script = spawned.GetComponent<BatCreep>();
+            script.Health = spawner.health;
+            script.PointHit = spawner.pointHit;
+            script.PointDie = spawner.pointDie;
+            script.target1 = target1;
+            script.target2 = target2;
+            script.MinEggSpawnTime = spawner.minEggSpawnTime;
+            script.MaxEggSpawnTime = spawner.maxEggSpawnTime;
+            script.EggForce = spawner.eggForce;
+            script.fly = true;
+        }
+        else if(spawner.creepName.Equals("BeeCreep")){
+            GameObject spawned = Instantiate(prefabBee, spawnPoint, Quaternion.identity);
+            spawned.transform.localScale *= spawner.scale;
+            BeeCreep script = spawned.GetComponent<BeeCreep>();
             script.Health = spawner.health;
             script.PointHit = spawner.pointHit;
             script.PointDie = spawner.pointDie;
