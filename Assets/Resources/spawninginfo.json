@@ -5,7 +5,7 @@
             "row" : 1,
             "creepPerRow" : 8,
             "scale" : 1, 
-            "health" : 3,
+            "health" : 2,
             "pointHit" : 25, 
             "pointDie" : 50,
             "minEggSpawnTime":  1,
