@@ -19,12 +19,13 @@ public class FatBirdCreep : Creep
     bool arrived2;
     public bool fly;
     float speed = 9;
+    Timer spawnTimer;
     // Start is called before the first frame update
     void Start()
     {
-        Health = 1;
-        PointHit = 20;
-        PointDie = 50;
+        spawnTimer = gameObject.AddComponent<Timer>();
+        spawnTimer.Duration = Random.Range(3, 6);
+		spawnTimer.Run();
     }
     // Update is called once per frame
     void Update()
@@ -39,19 +40,24 @@ public class FatBirdCreep : Creep
                 transform.position = Vector2.MoveTowards(transform.position, target2, Time.deltaTime * speed);
             }
         }
-        CreepFire();
+        if(spawnTimer.Finished) {
+            CreepFire();
+            StartRandomTimer();
+            }
     }
     void FixedUpdate(){
         
     }
+    void StartRandomTimer()
+    {
+		spawnTimer.Duration = Random.Range(minEggSpawnTime, maxEggSpawnTime);
+		spawnTimer.Run();
+	}
     void CreepFire()
     {
-        if(Random.Range(0f, 5000f) < 1)
-        {
             GameObject eggClone = Instantiate(egg, transform.position, Quaternion.identity) as GameObject;
-            Egg script = egg.GetComponent<Egg>();
-            script.ApplyForce(new Vector2(1, 0));
-        }
+            Egg script = eggClone.GetComponent<Egg>();
+            script.ApplyForce(new Vector2(0, -1), eggForce);
     }
     public override void OnCollisionEnter2D(Collision2D coll)
     {
@@ -62,7 +68,7 @@ public class FatBirdCreep : Creep
     }
     public override void DropItem()
     {
-        if (Random.Range(0f, 5f) > 1)
+        if (Random.Range(0f, 10f) > 1)
         {
             GameObject foodClone = Instantiate(food, transform.position, Quaternion.identity) as GameObject;
         }
@@ -111,7 +117,7 @@ public class FatBirdCreep : Creep
             GameManager.Instance.AddPoints(pointDie);
             Destroy(gameObject);
             GameObject die = Instantiate(diePrefab, transform.position, Quaternion.identity) as GameObject;
-            Destroy(die, 0.15f);
+            Destroy(die, 0.2f);
             DropItem();
         }
     }

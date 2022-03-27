@@ -31,7 +31,7 @@ public class SpaceCraft : MonoBehaviour
     int healthPoint = 5;
 
     // Fire support
-    double canfire = 0.2;
+    double canfire = 0.1;
     int levelGun = 2;
     GameObject bulletShooted1;
     GameObject bulletShooted2;
@@ -71,10 +71,6 @@ public class SpaceCraft : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //BoxCollider2D collider = GetComponent<BoxCollider2D>();
-        //colliderHalfWidth = collider.size.x / 2;
-        //colliderHalfHeight = collider.size.y / 2;
-        //transform.position = new Vector3();
         ChangeBullet(IonBlaster);
         levelGun = 1;
         print(healthPoint);
@@ -86,11 +82,11 @@ public class SpaceCraft : MonoBehaviour
         // check for pausing game
         if (Input.GetKeyDown("escape"))
         {
-            if(!GameManager.isPaused)
-                {
-                    MenuManager.GoToMenu(MenuName.Pause);
-                    GameManager.isPaused = true;
-                }
+            if (!GameManager.isPaused)
+            {
+                MenuManager.GoToMenu(MenuName.Pause);
+                GameManager.isPaused = true;
+            }
         }
         // Die if healt point below 1
         if (healthPoint <= 0)
@@ -112,7 +108,7 @@ public class SpaceCraft : MonoBehaviour
         if (Input.GetButton("Fire1") && (Time.time > canfire))
         {
             ShootSingleBullet();
-            canfire = Time.time + 0.5;
+            canfire = Time.time + 0.3;
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -125,25 +121,26 @@ public class SpaceCraft : MonoBehaviour
         if (GameManager.MissileCount > 0)
         {
             GameObject missileClone = Instantiate(Missile, transform.position, Quaternion.identity) as GameObject;
-            GameManager.MissileCount = GameManager.MissileCount -1;
+            GameManager.MissileCount = GameManager.MissileCount - 1;
         }
     }
 
     // Shooting function
     void Shoot(int numberOfBullet, float spread)
     {
+        Debug.Log("Start rotation at: " + Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg);
         float spreadRange = spread / 2f;
         for (int i = 0; i < numberOfBullet; i++)
         {
             float startRotation = Mathf.Atan2(Vector2.up.y, Vector2.up.x) * Mathf.Rad2Deg + spreadRange;
-            float rotation = startRotation - (spread / ((float)numberOfBullet - 1f)) * i;
+            float rotation = startRotation - (spread / ((float) numberOfBullet - 1f)) * i;
+            Debug.Log("This is the rotation of" + i + ":" + rotation);
             GameObject bulletShooted = Instantiate<GameObject>(bullet, transform.position, Quaternion.Euler(0f, 0f, rotation));
             Bullet script = bulletShooted.GetComponent<Bullet>();
+            Debug.Log("This is direction of " + i + ":" + new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
             script.Setup(new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)));
+            //script.ApplyForce(new Vector2(1, 0));
         }
-
-        //AudioSource source = GetComponent<AudioSource>();
-        //source.PlayOneShot(audioClip);
     }
 
     void ShootSingleBullet()
@@ -188,16 +185,16 @@ public class SpaceCraft : MonoBehaviour
             switch (levelGun)
             {
                 case 1:
-                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 5f, Quaternion.identity);
                     break;
                 case 2:
-                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f + Vector3.up * 4.5f, Quaternion.identity);
-                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.3f + Vector3.up * 4.8f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.3f + Vector3.up * 4.8f, Quaternion.identity);
                     break;
                 case 3:
-                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f + Vector3.up * 4.5f, Quaternion.identity);
-                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f + Vector3.up * 4.5f, Quaternion.identity);
-                    bulletShooted3 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.5f, Quaternion.identity);
+                    bulletShooted1 = Instantiate<GameObject>(bullet, transform.position + Vector3.left * 0.4f + Vector3.up * 4.8f, Quaternion.identity);
+                    bulletShooted2 = Instantiate<GameObject>(bullet, transform.position + Vector3.right * 0.4f + Vector3.up * 4.8f, Quaternion.identity);
+                    bulletShooted3 = Instantiate<GameObject>(bullet, transform.position + Vector3.up * 4.8f, Quaternion.identity);
                     break;
                 default:
                     break;
@@ -249,6 +246,9 @@ public class SpaceCraft : MonoBehaviour
             case "FatBirdFall":
                 TakeDamage(1);
                 break;
+            case "Creep":
+                TakeDamage(1);
+                break;
             case "Asteroid":
                 TakeDamage(1);
                 break;
@@ -256,12 +256,15 @@ public class SpaceCraft : MonoBehaviour
                 TakeDamage(1);
                 break;
             case "IonBlasterBox":
+                if (gunType.Equals("IonBlasterSingle")) levelGun++;
                 ChangeBullet(IonBlaster);
                 break;
             case "NeutronGunBox":
+                if (gunType.Equals("NeutronGunCI2Medium")) levelGun++;
                 ChangeBullet(NeutronGun);
                 break;
             case "LaserCannonBox":
+                if (gunType.Equals("LaserCannonCI2Weak")) levelGun++;
                 ChangeBullet(LaserCanon);
                 break;
             case "Power-ups":
@@ -286,6 +289,7 @@ public class SpaceCraft : MonoBehaviour
     {
         GameManager.Instance.TakeDamage(damage);
         healthPoint -= damage;
+        if(levelGun > 1) levelGun--;
         GameObject die = Instantiate(prefabExplosion, transform.position, Quaternion.identity) as GameObject;
         Destroy(die, 1.2f);
         // check for game over

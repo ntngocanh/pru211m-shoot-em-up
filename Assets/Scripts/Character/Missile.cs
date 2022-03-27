@@ -5,7 +5,7 @@ using UnityEngine;
 public class Missile : MonoBehaviour
 {
 
-    public float moveSpeed = 3f;
+    public float moveSpeed = 5f;
     public AudioSource audioSource;
     public GameObject explosion;
 
@@ -36,15 +36,13 @@ public class Missile : MonoBehaviour
             Destroy(explosionCLone, 2f);
 
             FatBirdCreep[] creeps = GameObject.FindObjectsOfType(typeof(FatBirdCreep)) as FatBirdCreep[];
-
+            BatCreep[] batcreeps = GameObject.FindObjectsOfType(typeof(BatCreep)) as BatCreep[];
             foreach (FatBirdCreep i in creeps)
             {
                 i.TakeDamage();
             }
 
-            Asteroid[] asteroids = GameObject.FindObjectsOfType(typeof(Asteroid)) as Asteroid[];
-
-            foreach (Asteroid i in asteroids)
+            foreach (BatCreep i in batcreeps)
             {
                 i.TakeDamage();
             }

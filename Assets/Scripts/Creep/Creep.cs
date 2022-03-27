@@ -8,19 +8,37 @@ public class Creep : MonoBehaviour
     protected int pointHit = 0;
     protected int pointDie = 0;
     protected int health;
-    protected int Health{
+    protected float minEggSpawnTime;
+    protected float maxEggSpawnTime;
+    protected float eggForce;
+    public int Health{
         set{
             health = value;
         }
     }
-    protected int PointHit{
+    public int PointHit{
         set{
             pointHit = value;
         }
     }
-    protected int PointDie{
+    public int PointDie{
         set{
             pointDie = value;
+        }
+    }
+    public float MinEggSpawnTime{
+        set{
+            minEggSpawnTime = value;
+        }
+    }
+    public float MaxEggSpawnTime{
+        set{
+            maxEggSpawnTime = value;
+        }
+    }
+    public float EggForce{
+        set{
+            eggForce = value;
         }
     }
     // Start is called before the first frame update
@@ -34,6 +52,7 @@ public class Creep : MonoBehaviour
     {
         
     }
+    
     public virtual void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.CompareTag("Bullet"))
